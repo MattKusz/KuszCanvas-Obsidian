@@ -142,6 +142,12 @@
     "js-yaml": "^4.3.0",
     "svgo": "^3.3.4",
     "source-map-js": "1.2.2",
+    "brace-expansion@1": "^1.1.22",
+    "moment": "^2.31.0",
+    "minimatch@8": "^11.0.8",
+    "minimatch@9": "^11.0.8",
+    "minimatch@10": "^11.0.8",
+    "glob@13": "^14.0.6",
     "@zsviczian/excalidraw": {
       "sass": "1.98.0"
     }
