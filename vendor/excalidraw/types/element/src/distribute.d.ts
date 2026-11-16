@@ -1,0 +1,11 @@
+import type { AppState } from "@excalidraw/excalidraw/types";
+import type { RenderEnvironment } from "./renderEnvironment";
+import type { Scene } from "./Scene";
+import type { ElementsMap, NonDeletedExcalidrawElement } from "./types";
+export interface Distribution {
+    space: "between";
+    axis: "x" | "y";
+}
+export declare const distributeElements: (selectedElements: NonDeletedExcalidrawElement[], elementsMap: ElementsMap, distribution: Distribution, appState: Readonly<AppState>, scene: Scene, 
+/** measures the labels of the bound arrows the distribution moves */
+renderEnvironment?: RenderEnvironment) => NonDeletedExcalidrawElement[];

@@ -1,0 +1,11 @@
+import type { AppState } from "@excalidraw/excalidraw/types";
+import type { RenderEnvironment } from "./renderEnvironment";
+import type { Scene } from "./Scene";
+import type { NonDeletedExcalidrawElement } from "./types";
+export interface Alignment {
+    position: "start" | "center" | "end";
+    axis: "x" | "y";
+}
+export declare const alignElements: (selectedElements: NonDeletedExcalidrawElement[], alignment: Alignment, scene: Scene, appState: Readonly<AppState>, 
+/** measures the labels of the bound arrows the alignment moves */
+renderEnvironment?: RenderEnvironment) => NonDeletedExcalidrawElement[];

@@ -1,0 +1,54 @@
+import { Emitter } from "@excalidraw/common";
+import { StoreDelta } from "@excalidraw/element";
+import type { RenderEnvironment, StoreSnapshot, Store } from "@excalidraw/element";
+import type { SceneElementsMap } from "@excalidraw/element/types";
+import type { AppState } from "./types";
+export declare class HistoryDelta extends StoreDelta {
+    /**
+     * Apply the delta to the passed elements and appState, does not modify the snapshot.
+     */
+    applyTo(elements: SceneElementsMap, appState: AppState, snapshot: StoreSnapshot, 
+    /** measures the labels re-laid out after applying */
+    renderEnvironment?: RenderEnvironment): [SceneElementsMap, AppState, boolean];
+    /**
+     * Overriding once to avoid type casting everywhere.
+     */
+    static calculate(prevSnapshot: StoreSnapshot, nextSnapshot: StoreSnapshot): HistoryDelta;
+    /**
+     * Overriding once to avoid type casting everywhere.
+     */
+    static inverse(delta: StoreDelta): HistoryDelta;
+    /**
+     * Overriding once to avoid type casting everywhere.
+     */
+    static applyLatestChanges(delta: StoreDelta, prevElements: SceneElementsMap, nextElements: SceneElementsMap, modifierOptions?: "deleted" | "inserted"): HistoryDelta;
+}
+export declare class HistoryChangedEvent {
+    readonly isUndoStackEmpty: boolean;
+    readonly isRedoStackEmpty: boolean;
+    constructor(isUndoStackEmpty?: boolean, isRedoStackEmpty?: boolean);
+}
+export declare class History {
+    private readonly store;
+    readonly onHistoryChangedEmitter: Emitter<[HistoryChangedEvent]>;
+    readonly undoStack: HistoryDelta[];
+    readonly redoStack: HistoryDelta[];
+    get isUndoStackEmpty(): boolean;
+    get isRedoStackEmpty(): boolean;
+    constructor(store: Store);
+    clear(): void;
+    /**
+     * Record a non-empty local durable increment, which will go into the undo stack..
+     * Do not re-record history entries, which were already pushed to undo / redo stack, as part of history action.
+     */
+    record(delta: StoreDelta): void;
+    undo(elements: SceneElementsMap, appState: AppState, 
+    /** measures the labels re-laid out after undoing (the host's, in the editor) */
+    renderEnvironment?: RenderEnvironment): void | [SceneElementsMap, AppState];
+    redo(elements: SceneElementsMap, appState: AppState, 
+    /** measures the labels re-laid out after redoing (the host's, in the editor) */
+    renderEnvironment?: RenderEnvironment): void | [SceneElementsMap, AppState];
+    private perform;
+    private static pop;
+    private static push;
+}

@@ -202,7 +202,7 @@ const extrasRoot = resolve(
     join(pluginRoot, "../obsidian-excalidraw-extras"),
 );
 const forkRoot = resolve(
-  process.env.EXCALIDRAW_FORK_ROOT || join(pluginRoot, "../excalidraw"),
+  process.env.EXCALIDRAW_FORK_ROOT || join(pluginRoot, "../KuszCanvas"),
 );
 const kplexRoot = kplexOntology ? resolve(process.env.EXCALIDRAW_KPLEX_ROOT || join(nativeRepositoryRoot(pluginRoot), "../kplex")) : undefined;
 if (kplexOntology) {

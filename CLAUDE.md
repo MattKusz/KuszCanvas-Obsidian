@@ -160,6 +160,15 @@ The customized component lives in the sibling `zsviczian/excalidraw` repository.
 - Never hand-edit or commit generated `dist/`, `lib/`, or `node_modules` artifacts as source fixes.
 - Treat the repositories as separate Git histories. Check branch, status, diff, build, and commit state independently in each one, and do not commit or publish unless explicitly requested.
 
+#### KuszCanvas vendored fork (overrides the publish/`node_modules`-copy bullets above and the release step below)
+
+- The fork is `MattKusz/KuszCanvas` at `../KuszCanvas` (`scripts/forkLocation.mjs`), not `../excalidraw`. Do not publish it to npm.
+- `package.json` depends on `"@zsviczian/excalidraw": "file:./vendor/excalidraw"`. Engine changes reach this plugin only through `npm run vendor:excalidraw` (build + copy + `SOURCE.json`); `--skip-build` records `built: false`, so prefer a full run before committing. Never hand-edit `vendor/excalidraw/`.
+- The vendor script refuses a dirty fork tree. Commit engine work first; keep fork scratch files in its `.tmp/`, which is excluded via the fork's `.git/info/exclude`.
+- Commit `vendor/excalidraw/{package.json,SOURCE.json,types/,dist/obsidian/*.production.min.*}`. Development artifacts and `vendor/excalidraw/node_modules/` are gitignored and regenerated.
+- `node_modules/@zsviczian/excalidraw` is a Windows junction holding an absolute path. After moving or renaming either repo folder, run `npm install` before building, or Rollup resolves a stale path.
+- To prove a vendoring-only change is behaviour-neutral, compare the production artifact SHA-256s against `SOURCE.json` and `cmp` the new `dist/main.js` against the previous build.
+
 ### Typed Excalidraw Host Boundary
 
 The customized Excalidraw runtime receives Obsidian capabilities through typed host adapters. Treat this as the only supported plugin-to-fork dependency-inversion boundary.
@@ -359,6 +368,8 @@ Use the layered test commands and explicit acceptance limits documented below. F
 ### Required regression coverage and execution
 
 Follow the mandatory [validation requirements](CODING_STANDARDS.md#validation-requirements). The testing guides below define commands and native environments.
+
+Known limitation: with `core.autocrlf=true`, `npm run test:fast` fails "portable skill stays aligned with native output…" in `scripts/testing/cli.test.mjs` because `docs/AITrainingData/excalidraw-cli/SKILL.md` is checked out with CRLF. Do not report it as a regression from unrelated work; check `git ls-files --eol` before investigating.
 
 ### Obsidian CLI runtime lane
 

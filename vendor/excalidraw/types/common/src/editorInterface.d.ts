@@ -1,0 +1,34 @@
+export type StylesPanelMode = "compact" | "full" | "mobile" | "tray";
+export type EditorInterface = Readonly<{
+    formFactor: "phone" | "tablet" | "desktop";
+    desktopUIMode: StylesPanelMode;
+    userAgent: Readonly<{
+        isMobileDevice: boolean;
+        platform: "ios" | "android" | "other" | "unknown";
+    }>;
+    isTouchScreen: boolean;
+    canFitSidebar: boolean;
+    isLandscape: boolean;
+}>;
+export declare const MQ_MAX_MOBILE = 599;
+export declare const MQ_MAX_WIDTH_LANDSCAPE = 1000;
+export declare const MQ_MAX_HEIGHT_LANDSCAPE = 500;
+export declare const MQ_MIN_TABLET: number;
+export declare const MQ_MAX_TABLET = 1180;
+export declare const MQ_MIN_WIDTH_DESKTOP = 1440;
+export declare const MQ_RIGHT_SIDEBAR_MIN_WIDTH = 800;
+export declare const isDarwin: boolean;
+export declare const isWindows: boolean;
+export declare const isAndroid: boolean;
+export declare const isFirefox: boolean;
+export declare const isChrome: boolean;
+export declare const isSafari: boolean;
+export declare const isIOS: boolean;
+export declare const isBrave: () => boolean;
+export declare const isMobileBreakpoint: (width: number, height: number, allowMobile: boolean) => boolean;
+export declare const isTabletBreakpoint: (editorWidth: number, editorHeight: number) => boolean;
+export declare const getFormFactor: (editorWidth: number, editorHeight: number, allowMobile: boolean) => EditorInterface["formFactor"];
+export declare const deriveStylesPanelMode: (editorInterface: EditorInterface) => StylesPanelMode;
+export declare const createUserAgentDescriptor: (userAgentString: string) => EditorInterface["userAgent"];
+export declare const loadDesktopUIModePreference: () => StylesPanelMode | null;
+export declare const setDesktopUIMode: (mode: EditorInterface["desktopUIMode"]) => "compact" | "full" | undefined;

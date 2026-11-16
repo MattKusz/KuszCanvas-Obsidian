@@ -32,3 +32,11 @@ repository.zip
 !tests/vault/.obsidian/plugins/obsidian-excalidraw-plugin/data.json
 !tests/vault/.obsidian/plugins/excalidraw-extras/data.json
 !tests/fixtures/kplex-ontology/data.json
+
+# Vendored Excalidraw fork build (npm run vendor:excalidraw). Keep last: it
+# re-includes paths the generic dist and Obsidian rules above exclude.
+# Production artifacts and declarations are tracked; development builds are
+# regenerated locally.
+!vendor/excalidraw/**/dist/
+!vendor/excalidraw/**/obsidian/
+vendor/excalidraw/dist/obsidian/excalidraw.development.*

@@ -4,7 +4,7 @@ import {mkdtempSync,mkdirSync,readFileSync,writeFileSync,symlinkSync} from 'node
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {createArtifactManifest,fileHash} from '../contracts.mjs';
-import {stageExtras} from './combination.mjs';
+import {declaredForkVersion,stageExtras} from './combination.mjs';
 function fixture(){
   const output=mkdtempSync(join(tmpdir(),'excalidraw-combination-')),root=join(output,'extras');mkdirSync(join(root,'dist'),{recursive:true});
   const entries=['main.js','manifest.json','styles.css','index.d.ts'];
@@ -28,4 +28,12 @@ test('companion staging proves installed bytes and restores prior disabled state
   assert.equal(JSON.parse(readFileSync(join(input.target.config,'plugins/excalidraw-extras/manifest.json'))).id,'excalidraw-extras');
   assert.equal(calls.filter(call=>call[0]==='plugin:disable').length,0);result.cleanup();
   assert.equal(calls.filter(call=>call[0]==='plugin:disable').length,1);
+});
+test('declared fork version resolves a vendored file: dependency to its manifest version',()=>{
+  const root=mkdtempSync(join(tmpdir(),'excalidraw-declared-'));mkdirSync(join(root,'vendor/excalidraw'),{recursive:true});
+  writeFileSync(join(root,'vendor/excalidraw/package.json'),JSON.stringify({name:'@zsviczian/excalidraw',version:'0.18.147'}));
+  assert.equal(declaredForkVersion(root,'file:./vendor/excalidraw'),'0.18.147');
+  assert.equal(declaredForkVersion(root,'0.18.147'),'0.18.147');
+  assert.throws(()=>declaredForkVersion(root,'file:./vendor/missing'),/vendor[\\/]missing/);
+  assert.throws(()=>declaredForkVersion(root,undefined),/@zsviczian\/excalidraw/);
 });

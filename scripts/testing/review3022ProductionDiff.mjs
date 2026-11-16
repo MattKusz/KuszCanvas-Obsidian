@@ -12,7 +12,7 @@ const baselines = {
 };
 export function reviewProductionDiff({
   pluginRoot = plugin,
-  forkRoot = resolve(pluginRoot, "../excalidraw"),
+  forkRoot = resolve(pluginRoot, "../KuszCanvas"),
   extrasRoot = resolve(pluginRoot, "../obsidian-excalidraw-extras"),
 } = {}) {
   const roots = { plugin: pluginRoot, fork: forkRoot, extras: extrasRoot },

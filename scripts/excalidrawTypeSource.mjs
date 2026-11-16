@@ -2,6 +2,7 @@
 import { createHash } from "node:crypto";
 import { existsSync, readFileSync } from "node:fs";
 import { resolve } from "node:path";
+import { siblingForkRoot } from "./forkLocation.mjs";
 
 export const obsidianArtifacts = [
   "excalidraw.production.min.js",
@@ -14,7 +15,7 @@ const hash = (path) =>
 
 export function localExcalidrawTypePaths(
   pluginRoot,
-  forkRoot = resolve(pluginRoot, "../excalidraw"),
+  forkRoot = siblingForkRoot(pluginRoot),
 ) {
   const pkg = resolve(forkRoot, "packages/excalidraw");
   const types = resolve(pkg, "types");

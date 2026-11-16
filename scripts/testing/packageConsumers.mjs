@@ -109,7 +109,7 @@ if (
       ] ||
         join(
           root,
-          kind === "fork" ? "../excalidraw" : "../obsidian-excalidraw-extras",
+          kind === "fork" ? "../KuszCanvas" : "../obsidian-excalidraw-extras",
         ),
     );
     const report = runPackageConsumer({

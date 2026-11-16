@@ -156,7 +156,7 @@ async function main() {
   const roots = {
     plugin,
     fork: resolve(
-      process.env.EXCALIDRAW_FORK_ROOT || join(plugin, "../excalidraw"),
+      process.env.EXCALIDRAW_FORK_ROOT || join(plugin, "../KuszCanvas"),
     ),
     extras: resolve(
       process.env.EXCALIDRAW_EXTRAS_ROOT ||

@@ -20,6 +20,16 @@ import { packageManagerInvocation } from "./processTools.mjs";
 import { parseCLIJSON } from "./inAppTask.mjs";
 import { discoverStagedPlugin } from "./pluginDiscovery.mjs";
 import { assertConverterInstallation } from "./companionVersions.mjs";
+/** Version the plugin declares for the fork; a vendored file: spec reads its manifest. */
+export function declaredForkVersion(pluginRoot, spec) {
+  if (typeof spec !== "string" || !spec)
+    throw new Error("package.json must declare @zsviczian/excalidraw");
+  if (!spec.startsWith("file:")) return spec;
+  const manifest = join(resolve(pluginRoot, spec.slice("file:".length)), "package.json");
+  if (!existsSync(manifest))
+    throw new Error(`Vendored fork manifest missing: ${manifest}`);
+  return JSON.parse(readFileSync(manifest, "utf8")).version;
+}
 export function produceCombination({
   pluginRoot,
   forkRoot,
@@ -77,9 +87,11 @@ export function produceCombination({
       "utf8",
     ),
   );
-  const declared = JSON.parse(
-    readFileSync(join(roots.plugin, "package.json"), "utf8"),
-  ).dependencies["@zsviczian/excalidraw"];
+  const declared = declaredForkVersion(
+    roots.plugin,
+    JSON.parse(readFileSync(join(roots.plugin, "package.json"), "utf8"))
+      .dependencies["@zsviczian/excalidraw"],
+  );
   assert.equal(
     installed.version,
     declared,

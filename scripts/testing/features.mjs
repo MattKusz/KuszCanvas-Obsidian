@@ -106,7 +106,7 @@ export function validateFeatures(registry, root = projectRoot) {
               resolve(
                 root,
                 test.repository === "fork"
-                  ? "../excalidraw"
+                  ? "../KuszCanvas"
                   : "../obsidian-excalidraw-extras",
               ),
           )

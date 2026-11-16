@@ -171,7 +171,7 @@ if (
   );
   const roots = [
     [project, "<plugin>"],
-    [resolve(project, "../excalidraw"), "<fork>"],
+    [resolve(project, "../KuszCanvas"), "<fork>"],
     [resolve(project, "../obsidian-excalidraw-extras"), "<extras>"],
   ];
   mkdirSync(output, { recursive: true });

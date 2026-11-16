@@ -7,12 +7,13 @@ import {
   localExcalidrawTypePaths,
   obsidianArtifacts,
 } from "../excalidrawTypeSource.mjs";
+import { FORK_SIBLING_DIRNAME } from "../forkLocation.mjs";
 
 function fixture(t) {
   const root = mkdtempSync(join(tmpdir(), "excalidraw-types-"));
   t.after(() => rmSync(root, { recursive: true, force: true }));
   const plugin = join(root, "plugin"),
-    fork = join(root, "excalidraw");
+    fork = join(root, FORK_SIBLING_DIRNAME);
   const write = (path, value) => {
     mkdirSync(dirname(path), { recursive: true });
     writeFileSync(path, value);
