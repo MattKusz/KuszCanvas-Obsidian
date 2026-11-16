@@ -375,6 +375,8 @@ Known limitation: with `core.autocrlf=true`, `npm run test:fast` fails "portable
 
 Known limitation: `npm run test:fast` throws `Git provenance unavailable: spawnSync git ENOBUFS` while a vendor update is uncommitted, because `sourceIdentity` in `scripts/testing/contracts.mjs` reads `git diff --binary HEAD` through spawnSync's default 1 MB buffer and the single-line production bundle exceeds it. Commit the vendor update first, or run the discovered files directly with `node --experimental-transform-types --test <every *.test.mjs under scripts/testing and tests>` and tell the user the runner's report checks were skipped.
 
+Known limitation: `sourceIdentity` hashes untracked files, so redirecting `npm run test:fast` output into an untracked path inside the repo (such as `.tmp/`) fails the report with "Plugin source changed during the test run". Write logs outside the repo.
+
 ### Obsidian CLI runtime lane
 
 Resolve recoverable dependency, host-request, menu-renderer and cleanup failures and rerun failed/blocked cases before returning. Follow [native failure recovery](docs/OBSIDIAN_RUNTIME_TESTING.md#recovering-from-native-test-failures); ask the maintainer promptly when an actual human prerequisite prevents progress.
