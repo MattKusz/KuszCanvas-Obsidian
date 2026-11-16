@@ -79,34 +79,10 @@ type EmbeddedLink =
 
 export declare namespace ExcalidrawLib {
   const exportScene: typeof import("@zsviczian/excalidraw").exportScene;
-  type ObsidianCommonHostUIMode = "full" | "compact" | "tray" | "mobile";
 
-  type ObsidianCommonHostAdapter = Readonly<{
-    protocolVersion: 1;
-    getDeviceInfo: () => Readonly<{
-      isDesktop: boolean;
-      isPhone: boolean;
-      isTablet: boolean;
-      isMobile: boolean;
-      isLinux: boolean;
-      isMacOS: boolean;
-      isWindows: boolean;
-      isIOS: boolean;
-      isAndroid: boolean;
-    }> | null;
-    getDesktopUIMode: () => ObsidianCommonHostUIMode;
-    getPreferredUIMode: (
-      formFactor: "phone" | "tablet" | "desktop",
-    ) => ObsidianCommonHostUIMode;
-    getCanvasLimits: () => Readonly<{
-      areaLimit: number;
-      widthHeightLimit: number;
-    }>;
-    getHighlightColor: (
-      sceneBackgroundColor: string,
-      opacity: number,
-    ) => string;
-  }>;
+  /** Derived from the engine so protocol bumps cannot drift silently. */
+  type ObsidianCommonHostAdapter =
+    import("@zsviczian/excalidraw/types/common/src/commonObsidianHost").ObsidianCommonHostAdapter;
 
   /** The fork owns the host service contract; dialog loading state is separate. */
   type ObsidianExcalidrawHostAdapter =
@@ -278,10 +254,8 @@ export declare namespace ExcalidrawLib {
   let DiagramToCodePlugin: typeof import("@zsviczian/excalidraw").DiagramToCodePlugin;
 
   function getDataURL(file: Blob | File): Promise<DataURL>;
-  const OBSIDIAN_COMMON_HOST_PROTOCOL_VERSION: 1;
-  function configureObsidianCommonHost(
-    adapter: ObsidianCommonHostAdapter,
-  ): () => void;
+  const OBSIDIAN_COMMON_HOST_PROTOCOL_VERSION: typeof import("@zsviczian/excalidraw/types/common/src/commonObsidianHost").OBSIDIAN_COMMON_HOST_PROTOCOL_VERSION;
+  const configureObsidianCommonHost: typeof import("@zsviczian/excalidraw/types/common/src/commonObsidianHost").configureObsidianCommonHost;
   const OBSIDIAN_EXCALIDRAW_HOST_PROTOCOL_VERSION: typeof import("@zsviczian/excalidraw/types/excalidraw/obsidianExcalidrawHost").OBSIDIAN_EXCALIDRAW_HOST_PROTOCOL_VERSION;
   const configureObsidianExcalidrawHost: typeof import("@zsviczian/excalidraw/types/excalidraw/obsidianExcalidrawHost").configureObsidianExcalidrawHost;
   function registerLocalFont(fontMetrics: FontMetadata, uri: string): void;

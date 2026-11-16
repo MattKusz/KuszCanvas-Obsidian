@@ -25,6 +25,8 @@ test(`plugin host and public Mermaid declarations match the ${typesSource} fork`
     import type ExcalidrawPlugin from "../../src/core/main";
     import { ExcalidrawLib } from "../../src/types/excalidrawLib";
     import { createObsidianExcalidrawHostAdapter } from "../../src/core/managers/obsidianExcalidrawHostAdapter";
+    import { createObsidianCommonHostAdapter } from "../../src/core/managers/obsidianCommonHostAdapter";
+    import type * as CommonHost from "@zsviczian/excalidraw/types/common/src/commonObsidianHost";
     import type * as Host from "@zsviczian/excalidraw/types/excalidraw/obsidianExcalidrawHost";
     import type * as Utils from "@zsviczian/excalidraw/types/excalidraw/obsidianUtils";
 
@@ -43,6 +45,16 @@ test(`plugin host and public Mermaid declarations match the ${typesSource} fork`
     const bridgeLoader: typeof ExcalidrawLib.loadMermaid = canonicalLoader;
     const configure: typeof Host.configureObsidianExcalidrawHost = ExcalidrawLib.configureObsidianExcalidrawHost;
     const bridgeConfigure: typeof ExcalidrawLib.configureObsidianExcalidrawHost = canonicalConfigure;
+
+    // KuszCanvas: common host protocol 2 adds blackboard + Markdown-text flags
+    declare const canonicalCommon: CommonHost.ObsidianCommonHostAdapter;
+    const coordinatedCommonProtocol: typeof CommonHost.OBSIDIAN_COMMON_HOST_PROTOCOL_VERSION = 2;
+    const commonAdapter: CommonHost.ObsidianCommonHostAdapter =
+      createObsidianCommonHostAdapter(plugin, ExcalidrawLib.OBSIDIAN_COMMON_HOST_PROTOCOL_VERSION);
+    const commonBridge: ExcalidrawLib.ObsidianCommonHostAdapter = canonicalCommon;
+    const commonConfigure: typeof CommonHost.configureObsidianCommonHost = ExcalidrawLib.configureObsidianCommonHost;
+    const blackboard: boolean = commonAdapter.isBlackboardModeEnabled();
+    const markdownText: boolean = commonAdapter.isMarkdownTextRenderingEnabled();
   `;
   const host = ts.createCompilerHost(options);
   const originalGetSourceFile = host.getSourceFile.bind(host);
@@ -58,6 +70,7 @@ test(`plugin host and public Mermaid declarations match the ${typesSource} fork`
   const files = [
     fixturePath,
     resolve(root, "src/core/managers/obsidianExcalidrawHostAdapter.ts"),
+    resolve(root, "src/core/managers/obsidianCommonHostAdapter.ts"),
     resolve(root, "src/core/main.ts"),
   ];
   const diagnostics = [

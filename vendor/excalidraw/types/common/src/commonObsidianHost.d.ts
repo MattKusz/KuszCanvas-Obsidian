@@ -13,7 +13,7 @@ import type { EditorInterface, StylesPanelMode } from "./editorInterface";
  * @see https://github.com/zsviczian/obsidian-excalidraw-plugin
  */
 /** Runtime protocol understood by this version of the fork. */
-export declare const OBSIDIAN_COMMON_HOST_PROTOCOL_VERSION: 1;
+export declare const OBSIDIAN_COMMON_HOST_PROTOCOL_VERSION: 2;
 /** Device capabilities supplied by the Obsidian host. */
 export type ObsidianDeviceType = Readonly<{
     isDesktop: boolean;
@@ -46,6 +46,16 @@ export interface ObsidianCommonHostAdapter {
     getPreferredUIMode(formFactor: EditorInterface["formFactor"]): StylesPanelMode;
     getCanvasLimits(): ObsidianCanvasLimits;
     getHighlightColor(sceneBackgroundColor: string, opacity: number): string;
+    /**
+     * KuszCanvas: whether dark theme renders as a chalk "blackboard".
+     * Read live on every render; must return a boolean.
+     */
+    isBlackboardModeEnabled(): boolean;
+    /**
+     * KuszCanvas: whether text elements render inline Markdown styling.
+     * Read live on every render; must return a boolean.
+     */
+    isMarkdownTextRenderingEnabled(): boolean;
 }
 /** Idempotent cleanup returned when a host adapter is configured. */
 export type ObsidianCommonHostDisposer = () => void;

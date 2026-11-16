@@ -103,6 +103,8 @@ export interface ExcalidrawSettings {
   matchTheme: boolean;
   matchThemeAlways: boolean;
   matchThemeTrigger: boolean;
+  blackboardDarkMode: boolean; // KuszCanvas -- chalk rendering in dark theme
+  renderMarkdownInText: boolean; // KuszCanvas -- inline Markdown in text elements
   defaultMode: string;
   defaultPenMode: "never" | "mobile" | "always";
   penModeDoubleTapEraser: boolean;
@@ -552,6 +554,8 @@ export const DEFAULT_SETTINGS: ExcalidrawSettings = {
   matchTheme: false,
   matchThemeAlways: false,
   matchThemeTrigger: false,
+  blackboardDarkMode: true,
+  renderMarkdownInText: true,
   defaultMode: "normal",
   defaultPenMode: "never",
   penModeDoubleTapEraser: true,

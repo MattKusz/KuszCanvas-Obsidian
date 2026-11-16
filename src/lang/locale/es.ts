@@ -874,6 +874,12 @@ export default {
   MATCH_THEME_TRIGGER_DESC:
     "Si esta opción está habilitada, el panel de Excalidraw abierto cambiará a modo claro/oscuro cuando cambie el tema de Obsidian. " +
     "<br><b><u>Activado:</u></b> Sigue el cambio de tema <br><b><u>Desactivado:</u></b> Los bosquejos no se ven afectados por los cambios de tema de Obsidian",
+  BLACKBOARD_DARK_MODE_NAME: "Modo pizarra en tema oscuro",
+  BLACKBOARD_DARK_MODE_DESC:
+    "En el tema oscuro, las formas, líneas, trazos a mano alzada y textos con estilo descuidado se muestran con textura de tiza, como en una pizarra. Los elementos con estilo «arquitecto» se mantienen sólidos. Las notas adhesivas, imágenes e incrustaciones nunca se ven afectadas.<br><b><u>Activado:</u></b> Textura de tiza en tema oscuro<br><b><u>Desactivado:</u></b> Tema oscuro estándar",
+  RENDER_MARKDOWN_IN_TEXT_NAME: "Mostrar Markdown en el texto",
+  RENDER_MARKDOWN_IN_TEXT_DESC:
+    "Muestra Markdown en línea en texto libre, etiquetas de formas y notas adhesivas: <code>**negrita**</code>, <code>*cursiva*</code>, <code>~~tachado~~</code>, <code>==resaltado==</code>, <code>`código`</code>, <code>&lt;u&gt;subrayado&lt;/u&gt;</code>, listas con viñetas o numeradas y citas. Los encabezados no se muestran. El texto guardado no cambia.<br><b><u>Activado:</u></b> Texto con formato<br><b><u>Desactivado:</u></b> Texto sin formato",
   DEFAULT_OPEN_MODE_NAME: "Modo predeterminado al abrir Excalidraw",
   DEFAULT_OPEN_MODE_DESC:
     "Especifica el modo en que se abre Excalidraw: Normal, Zen o Vista. También puedes configurar este comportamiento a nivel de archivo " +

@@ -1501,654 +1501,664 @@
       "line": 105
     },
     {
-      "name": "defaultMode",
+      "name": "blackboardDarkMode",
       "path": "src/core/settingsDefaults.ts",
       "line": 106
     },
     {
-      "name": "defaultPenMode",
+      "name": "renderMarkdownInText",
       "path": "src/core/settingsDefaults.ts",
       "line": 107
     },
     {
-      "name": "penModeDoubleTapEraser",
+      "name": "defaultMode",
       "path": "src/core/settingsDefaults.ts",
       "line": 108
     },
     {
-      "name": "penModeSingleFingerPanning",
+      "name": "defaultPenMode",
       "path": "src/core/settingsDefaults.ts",
       "line": 109
     },
     {
-      "name": "penModeCrosshairVisible",
+      "name": "penModeDoubleTapEraser",
       "path": "src/core/settingsDefaults.ts",
       "line": 110
     },
     {
-      "name": "renderImageInMarkdownReadingMode",
+      "name": "penModeSingleFingerPanning",
       "path": "src/core/settingsDefaults.ts",
       "line": 111
     },
     {
-      "name": "renderImageInHoverPreviewForMDNotes",
+      "name": "penModeCrosshairVisible",
       "path": "src/core/settingsDefaults.ts",
       "line": 112
     },
     {
-      "name": "renderImageInMarkdownToPDF",
+      "name": "renderImageInMarkdownReadingMode",
       "path": "src/core/settingsDefaults.ts",
       "line": 113
     },
     {
-      "name": "allowPinchZoom",
+      "name": "renderImageInHoverPreviewForMDNotes",
       "path": "src/core/settingsDefaults.ts",
       "line": 114
     },
     {
-      "name": "allowWheelZoom",
+      "name": "renderImageInMarkdownToPDF",
       "path": "src/core/settingsDefaults.ts",
       "line": 115
     },
     {
-      "name": "zoomToFitOnOpen",
+      "name": "allowPinchZoom",
       "path": "src/core/settingsDefaults.ts",
       "line": 116
     },
     {
-      "name": "zoomToFitOnResize",
+      "name": "allowWheelZoom",
       "path": "src/core/settingsDefaults.ts",
       "line": 117
     },
     {
-      "name": "zoomToFitMaxLevel",
+      "name": "zoomToFitOnOpen",
       "path": "src/core/settingsDefaults.ts",
       "line": 118
     },
     {
-      "name": "zoomStep",
+      "name": "zoomToFitOnResize",
       "path": "src/core/settingsDefaults.ts",
       "line": 119
     },
     {
-      "name": "zoomMin",
+      "name": "zoomToFitMaxLevel",
       "path": "src/core/settingsDefaults.ts",
       "line": 120
     },
     {
-      "name": "zoomMax",
+      "name": "zoomStep",
       "path": "src/core/settingsDefaults.ts",
       "line": 121
     },
     {
-      "name": "openInAdjacentPane",
+      "name": "zoomMin",
       "path": "src/core/settingsDefaults.ts",
       "line": 122
     },
     {
-      "name": "showSecondOrderLinks",
+      "name": "zoomMax",
       "path": "src/core/settingsDefaults.ts",
       "line": 123
     },
     {
-      "name": "focusOnFileTab",
+      "name": "openInAdjacentPane",
       "path": "src/core/settingsDefaults.ts",
       "line": 124
     },
     {
-      "name": "openInMainWorkspace",
+      "name": "showSecondOrderLinks",
       "path": "src/core/settingsDefaults.ts",
       "line": 125
     },
     {
-      "name": "showLinkBrackets",
+      "name": "focusOnFileTab",
       "path": "src/core/settingsDefaults.ts",
       "line": 126
     },
     {
-      "name": "syncElementLinkWithText",
+      "name": "openInMainWorkspace",
       "path": "src/core/settingsDefaults.ts",
       "line": 127
     },
     {
-      "name": "linkPrefix",
+      "name": "showLinkBrackets",
       "path": "src/core/settingsDefaults.ts",
       "line": 128
     },
     {
-      "name": "urlPrefix",
+      "name": "syncElementLinkWithText",
       "path": "src/core/settingsDefaults.ts",
       "line": 129
     },
     {
-      "name": "parseTODO",
+      "name": "linkPrefix",
       "path": "src/core/settingsDefaults.ts",
       "line": 130
     },
     {
-      "name": "todo",
+      "name": "urlPrefix",
       "path": "src/core/settingsDefaults.ts",
       "line": 131
     },
     {
-      "name": "done",
+      "name": "parseTODO",
       "path": "src/core/settingsDefaults.ts",
       "line": 132
     },
     {
-      "name": "hoverPreviewWithoutCTRL",
+      "name": "todo",
       "path": "src/core/settingsDefaults.ts",
       "line": 133
     },
     {
-      "name": "linkOpacity",
+      "name": "done",
       "path": "src/core/settingsDefaults.ts",
       "line": 134
     },
     {
-      "name": "allowCtrlClick",
+      "name": "hoverPreviewWithoutCTRL",
       "path": "src/core/settingsDefaults.ts",
       "line": 135
     },
     {
-      "name": "forceWrap",
+      "name": "linkOpacity",
       "path": "src/core/settingsDefaults.ts",
       "line": 136
     },
     {
-      "name": "pageTransclusionCharLimit",
+      "name": "allowCtrlClick",
       "path": "src/core/settingsDefaults.ts",
       "line": 137
     },
     {
-      "name": "wordWrappingDefault",
+      "name": "forceWrap",
       "path": "src/core/settingsDefaults.ts",
       "line": 138
     },
     {
-      "name": "removeTransclusionQuoteSigns",
+      "name": "pageTransclusionCharLimit",
       "path": "src/core/settingsDefaults.ts",
       "line": 139
     },
     {
-      "name": "oEmbedAllowed",
+      "name": "wordWrappingDefault",
       "path": "src/core/settingsDefaults.ts",
       "line": 140
     },
     {
-      "name": "pngExportScale",
+      "name": "removeTransclusionQuoteSigns",
       "path": "src/core/settingsDefaults.ts",
       "line": 141
     },
     {
-      "name": "exportWithTheme",
+      "name": "oEmbedAllowed",
       "path": "src/core/settingsDefaults.ts",
       "line": 142
     },
     {
-      "name": "exportWithBackground",
+      "name": "pngExportScale",
       "path": "src/core/settingsDefaults.ts",
       "line": 143
     },
     {
-      "name": "exportPaddingSVG",
+      "name": "exportWithTheme",
       "path": "src/core/settingsDefaults.ts",
       "line": 144
     },
     {
-      "name": "exportEmbedScene",
+      "name": "exportWithBackground",
       "path": "src/core/settingsDefaults.ts",
       "line": 145
     },
     {
-      "name": "keepInSync",
+      "name": "exportPaddingSVG",
       "path": "src/core/settingsDefaults.ts",
       "line": 146
     },
     {
-      "name": "autoexportSVG",
+      "name": "exportEmbedScene",
       "path": "src/core/settingsDefaults.ts",
       "line": 147
     },
     {
-      "name": "autoexportPNG",
+      "name": "keepInSync",
       "path": "src/core/settingsDefaults.ts",
       "line": 148
     },
     {
-      "name": "autoExportLightAndDark",
+      "name": "autoexportSVG",
       "path": "src/core/settingsDefaults.ts",
       "line": 149
     },
     {
-      "name": "autoexportExcalidraw",
+      "name": "autoexportPNG",
       "path": "src/core/settingsDefaults.ts",
       "line": 150
     },
     {
-      "name": "embedType",
+      "name": "autoExportLightAndDark",
       "path": "src/core/settingsDefaults.ts",
       "line": 151
     },
     {
-      "name": "embedMarkdownCommentLinks",
+      "name": "autoexportExcalidraw",
       "path": "src/core/settingsDefaults.ts",
       "line": 152
     },
     {
-      "name": "embedWikiLink",
+      "name": "embedType",
       "path": "src/core/settingsDefaults.ts",
       "line": 153
     },
     {
+      "name": "embedMarkdownCommentLinks",
+      "path": "src/core/settingsDefaults.ts",
+      "line": 154
+    },
+    {
+      "name": "embedWikiLink",
+      "path": "src/core/settingsDefaults.ts",
+      "line": 155
+    },
+    {
       "name": "embedPlaceholderImage",
-      "path": "src/core/settingsDefaults.ts",
-      "line": 157
-    },
-    {
-      "name": "syncExcalidraw",
-      "path": "src/core/settingsDefaults.ts",
-      "line": 158
-    },
-    {
-      "name": "compatibilityMode",
       "path": "src/core/settingsDefaults.ts",
       "line": 159
     },
     {
-      "name": "experimentalFileType",
+      "name": "syncExcalidraw",
       "path": "src/core/settingsDefaults.ts",
       "line": 160
     },
     {
-      "name": "experimentalFileTag",
+      "name": "compatibilityMode",
       "path": "src/core/settingsDefaults.ts",
       "line": 161
     },
     {
-      "name": "experimentalLivePreview",
+      "name": "experimentalFileType",
       "path": "src/core/settingsDefaults.ts",
       "line": 162
     },
     {
-      "name": "fadeOutExcalidrawMarkup",
+      "name": "experimentalFileTag",
       "path": "src/core/settingsDefaults.ts",
       "line": 163
     },
     {
-      "name": "loadPropertySuggestions",
+      "name": "experimentalLivePreview",
       "path": "src/core/settingsDefaults.ts",
       "line": 164
     },
     {
-      "name": "experimentalEnableFourthFont",
+      "name": "fadeOutExcalidrawMarkup",
       "path": "src/core/settingsDefaults.ts",
       "line": 165
     },
     {
-      "name": "experimantalFourthFont",
+      "name": "loadPropertySuggestions",
       "path": "src/core/settingsDefaults.ts",
       "line": 166
     },
     {
-      "name": "addDummyTextElement",
+      "name": "experimentalEnableFourthFont",
       "path": "src/core/settingsDefaults.ts",
       "line": 167
     },
     {
-      "name": "zoteroCompatibility",
+      "name": "experimantalFourthFont",
       "path": "src/core/settingsDefaults.ts",
       "line": 168
     },
     {
-      "name": "fieldSuggester",
+      "name": "addDummyTextElement",
       "path": "src/core/settingsDefaults.ts",
       "line": 169
     },
     {
-      "name": "enableOnloadScripts",
+      "name": "zoteroCompatibility",
       "path": "src/core/settingsDefaults.ts",
       "line": 170
     },
     {
-      "name": "enableCommandLinks",
+      "name": "fieldSuggester",
       "path": "src/core/settingsDefaults.ts",
       "line": 171
     },
     {
-      "name": "drawingOpenCount",
+      "name": "enableOnloadScripts",
+      "path": "src/core/settingsDefaults.ts",
+      "line": 172
+    },
+    {
+      "name": "enableCommandLinks",
       "path": "src/core/settingsDefaults.ts",
       "line": 173
     },
     {
-      "name": "library",
-      "path": "src/core/settingsDefaults.ts",
-      "line": 174
-    },
-    {
-      "name": "library2",
+      "name": "drawingOpenCount",
       "path": "src/core/settingsDefaults.ts",
       "line": 175
     },
     {
-      "name": "imageElementNotice",
+      "name": "library",
+      "path": "src/core/settingsDefaults.ts",
+      "line": 176
+    },
+    {
+      "name": "library2",
       "path": "src/core/settingsDefaults.ts",
       "line": 177
     },
     {
+      "name": "imageElementNotice",
+      "path": "src/core/settingsDefaults.ts",
+      "line": 179
+    },
+    {
       "name": "mdSVGwidth",
-      "path": "src/core/settingsDefaults.ts",
-      "line": 180
-    },
-    {
-      "name": "mdSVGmaxHeight",
-      "path": "src/core/settingsDefaults.ts",
-      "line": 181
-    },
-    {
-      "name": "mdFont",
       "path": "src/core/settingsDefaults.ts",
       "line": 182
     },
     {
-      "name": "mdFontColor",
+      "name": "mdSVGmaxHeight",
       "path": "src/core/settingsDefaults.ts",
       "line": 183
     },
     {
-      "name": "mdBorderColor",
+      "name": "mdFont",
       "path": "src/core/settingsDefaults.ts",
       "line": 184
     },
     {
-      "name": "mdCSS",
+      "name": "mdFontColor",
       "path": "src/core/settingsDefaults.ts",
       "line": 185
     },
     {
-      "name": "markdownImageSettings",
+      "name": "mdBorderColor",
       "path": "src/core/settingsDefaults.ts",
       "line": 186
     },
     {
-      "name": "markdownImageDeletionPreference",
+      "name": "mdCSS",
       "path": "src/core/settingsDefaults.ts",
       "line": 187
     },
     {
-      "name": "pasteCodeBlockAs",
+      "name": "markdownImageSettings",
       "path": "src/core/settingsDefaults.ts",
       "line": 188
     },
     {
-      "name": "scriptEngineSettings",
+      "name": "markdownImageDeletionPreference",
       "path": "src/core/settingsDefaults.ts",
       "line": 189
     },
     {
+      "name": "pasteCodeBlockAs",
+      "path": "src/core/settingsDefaults.ts",
+      "line": 190
+    },
+    {
+      "name": "scriptEngineSettings",
+      "path": "src/core/settingsDefaults.ts",
+      "line": 191
+    },
+    {
       "name": "autostartScripts",
       "path": "src/core/settingsDefaults.ts",
-      "line": 197
+      "line": 199
     },
     {
       "name": "autostartScriptFailures",
       "path": "src/core/settingsDefaults.ts",
-      "line": 204
+      "line": 206
     },
     {
       "name": "previousRelease",
       "path": "src/core/settingsDefaults.ts",
-      "line": 207
+      "line": 209
     },
     {
       "name": "showReleaseNotes",
       "path": "src/core/settingsDefaults.ts",
-      "line": 208
+      "line": 210
     },
     {
       "name": "useDeclarativeSettings",
       "path": "src/core/settingsDefaults.ts",
-      "line": 209
+      "line": 211
     },
     {
       "name": "excalidrawMasteryPromoCollapsed",
       "path": "src/core/settingsDefaults.ts",
-      "line": 210
+      "line": 212
     },
     {
       "name": "compareManifestToPluginVersion",
       "path": "src/core/settingsDefaults.ts",
-      "line": 211
+      "line": 213
     },
     {
       "name": "showNewVersionNotification",
       "path": "src/core/settingsDefaults.ts",
-      "line": 212
+      "line": 214
     },
     {
       "name": "latexBoilerplate",
       "path": "src/core/settingsDefaults.ts",
-      "line": 214
+      "line": 216
     },
     {
       "name": "latexPreambleLocation",
       "path": "src/core/settingsDefaults.ts",
-      "line": 215
+      "line": 217
     },
     {
       "name": "taskboneEnabled",
       "path": "src/core/settingsDefaults.ts",
-      "line": 216
+      "line": 218
     },
     {
       "name": "taskboneAPIkey",
       "path": "src/core/settingsDefaults.ts",
-      "line": 217
+      "line": 219
     },
     {
       "name": "pinnedScripts",
       "path": "src/core/settingsDefaults.ts",
-      "line": 218
+      "line": 220
     },
     {
       "name": "sidepanelTabs",
       "path": "src/core/settingsDefaults.ts",
-      "line": 219
+      "line": 221
     },
     {
       "name": "customPens",
       "path": "src/core/settingsDefaults.ts",
-      "line": 220
+      "line": 222
     },
     {
       "name": "numberOfCustomPens",
       "path": "src/core/settingsDefaults.ts",
-      "line": 221
+      "line": 223
     },
     {
       "name": "pdfScale",
       "path": "src/core/settingsDefaults.ts",
-      "line": 222
+      "line": 224
     },
     {
       "name": "pdfBorderBox",
       "path": "src/core/settingsDefaults.ts",
-      "line": 223
+      "line": 225
     },
     {
       "name": "pdfFrame",
       "path": "src/core/settingsDefaults.ts",
-      "line": 224
+      "line": 226
     },
     {
       "name": "pdfGapSize",
       "path": "src/core/settingsDefaults.ts",
-      "line": 225
+      "line": 227
     },
     {
       "name": "pdfGroupPages",
       "path": "src/core/settingsDefaults.ts",
-      "line": 226
+      "line": 228
     },
     {
       "name": "pdfLockAfterImport",
       "path": "src/core/settingsDefaults.ts",
-      "line": 227
+      "line": 229
     },
     {
       "name": "pdfNumColumns",
       "path": "src/core/settingsDefaults.ts",
-      "line": 228
+      "line": 230
     },
     {
       "name": "pdfNumRows",
       "path": "src/core/settingsDefaults.ts",
-      "line": 229
+      "line": 231
     },
     {
       "name": "pdfDirection",
       "path": "src/core/settingsDefaults.ts",
-      "line": 230
+      "line": 232
     },
     {
       "name": "pdfImportScale",
       "path": "src/core/settingsDefaults.ts",
-      "line": 231
+      "line": 233
     },
     {
       "name": "gridSettings",
       "path": "src/core/settingsDefaults.ts",
-      "line": 232
+      "line": 234
     },
     {
       "name": "laserSettings",
       "path": "src/core/settingsDefaults.ts",
-      "line": 233
+      "line": 235
     },
     {
       "name": "embeddableMarkdownDefaults",
       "path": "src/core/settingsDefaults.ts",
-      "line": 238
+      "line": 240
     },
     {
       "name": "markdownNodeOneClickEditing",
       "path": "src/core/settingsDefaults.ts",
-      "line": 239
+      "line": 241
     },
     {
       "name": "canvasImmersiveEmbed",
       "path": "src/core/settingsDefaults.ts",
-      "line": 240
+      "line": 242
     },
     {
       "name": "startupScriptPath",
       "path": "src/core/settingsDefaults.ts",
-      "line": 241
+      "line": 243
     },
     {
       "name": "aiEnabled",
       "path": "src/core/settingsDefaults.ts",
-      "line": 242
+      "line": 244
     },
     {
       "name": "aiVerboseLogging",
       "path": "src/core/settingsDefaults.ts",
-      "line": 243
+      "line": 245
     },
     {
       "name": "aiProviderProfiles",
       "path": "src/core/settingsDefaults.ts",
-      "line": 244
+      "line": 246
     },
     {
       "name": "aiTextModelConfigs",
       "path": "src/core/settingsDefaults.ts",
-      "line": 245
+      "line": 247
     },
     {
       "name": "aiImageModelConfigs",
       "path": "src/core/settingsDefaults.ts",
-      "line": 246
+      "line": 248
     },
     {
       "name": "aiDefaultTextModel",
       "path": "src/core/settingsDefaults.ts",
-      "line": 247
+      "line": 249
     },
     {
       "name": "aiDefaultMultimodalModel",
       "path": "src/core/settingsDefaults.ts",
-      "line": 248
+      "line": 250
     },
     {
       "name": "aiDefaultImageGenerationModel",
       "path": "src/core/settingsDefaults.ts",
-      "line": 249
+      "line": 251
     },
     {
       "name": "aiDefaultMaxOutgoingTokens",
       "path": "src/core/settingsDefaults.ts",
-      "line": 250
+      "line": 252
     },
     {
       "name": "aiDefaultMaxResponseTokens",
       "path": "src/core/settingsDefaults.ts",
-      "line": 251
+      "line": 253
     },
     {
       "name": "modifierKeyConfig",
       "path": "src/core/settingsDefaults.ts",
-      "line": 252
+      "line": 254
     },
     {
       "name": "slidingPanesSupport",
       "path": "src/core/settingsDefaults.ts",
-      "line": 256
+      "line": 258
     },
     {
       "name": "areaZoomLimit",
       "path": "src/core/settingsDefaults.ts",
-      "line": 257
+      "line": 259
     },
     {
       "name": "longPressDesktop",
       "path": "src/core/settingsDefaults.ts",
-      "line": 258
+      "line": 260
     },
     {
       "name": "longPressMobile",
       "path": "src/core/settingsDefaults.ts",
-      "line": 259
+      "line": 261
     },
     {
       "name": "doubleClickLinkOpenViewMode",
       "path": "src/core/settingsDefaults.ts",
-      "line": 260
+      "line": 262
     },
     {
       "name": "rank",
       "path": "src/core/settingsDefaults.ts",
-      "line": 261
+      "line": 263
     },
     {
       "name": "modifierKeyOverrides",
       "path": "src/core/settingsDefaults.ts",
-      "line": 262
+      "line": 264
     },
     {
       "name": "showSplashscreen",
       "path": "src/core/settingsDefaults.ts",
-      "line": 263
+      "line": 265
     },
     {
       "name": "pdfSettings",
       "path": "src/core/settingsDefaults.ts",
-      "line": 264
+      "line": 266
     },
     {
       "name": "disableContextMenu",
       "path": "src/core/settingsDefaults.ts",
-      "line": 265
+      "line": 267
     }
   ],
   "frontmatter": [
@@ -2453,6 +2463,10 @@
       "mode": "direct-module-or-tooling"
     },
     {
+      "path": "scripts/testing/commonHostAdapter.source.test.mjs",
+      "mode": "direct-module-or-tooling"
+    },
+    {
       "path": "scripts/testing/contracts.test.mjs",
       "mode": "direct-module-or-tooling"
     },
@@ -2530,6 +2544,10 @@
     },
     {
       "path": "scripts/testing/features.test.mjs",
+      "mode": "direct-module-or-tooling"
+    },
+    {
+      "path": "scripts/testing/forkLocation.test.mjs",
       "mode": "direct-module-or-tooling"
     },
     {
@@ -2783,6 +2801,10 @@
     {
       "path": "scripts/testing/textSubmissionHistory.test.mjs",
       "mode": "isolated-or-extracted"
+    },
+    {
+      "path": "scripts/testing/vendorExcalidraw.test.mjs",
+      "mode": "direct-module-or-tooling"
     },
     {
       "path": "scripts/testing/windowMigrationTimers.test.mjs",

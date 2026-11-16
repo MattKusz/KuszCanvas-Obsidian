@@ -8070,6 +8070,24 @@ export default class ExcalidrawView
     });
   }
 
+  /**
+   * KuszCanvas: repaint after a host render flag (blackboard, Markdown text)
+   * changes. Re-submitting the same elements bumps the scene nonce so the
+   * static canvas re-renders and the element bitmap cache re-checks its key.
+   * Not recorded in undo history.
+   */
+  public redrawAfterRenderFlagChange(): boolean {
+    const api = this.excalidrawAPI;
+    if (!api) {
+      return false;
+    }
+    api.updateScene({
+      elements: api.getSceneElementsIncludingDeleted(),
+      captureUpdate: CaptureUpdateAction.NEVER,
+    });
+    return true;
+  }
+
   public updatePinnedCustomPens() {
     const api = this.excalidrawAPI;
     if (!api) {

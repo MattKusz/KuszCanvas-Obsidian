@@ -139,9 +139,12 @@ export class PackageManager {
     if (
       !lib ||
       typeof lib.configureObsidianCommonHost !== "function" ||
-      typeof lib.OBSIDIAN_COMMON_HOST_PROTOCOL_VERSION !== "number"
+      typeof lib.OBSIDIAN_COMMON_HOST_PROTOCOL_VERSION !== "number" ||
+      Number(lib.OBSIDIAN_COMMON_HOST_PROTOCOL_VERSION) !== 2 // KuszCanvas -- render flags
     ) {
-      throw new Error("Excalidraw package is missing the common host boundary");
+      throw new Error(
+        "Excalidraw package requires Obsidian common host protocol 2",
+      );
     }
 
     const adapter = createObsidianCommonHostAdapter(

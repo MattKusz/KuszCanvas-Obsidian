@@ -825,6 +825,12 @@ export default {
   MATCH_THEME_TRIGGER_DESC:
     "开启该项，则切换 Obsidian 的深色/浅色主题时，已打开的 Excalidraw 面板的主题会随之改变。" +
     "<br><b>开启：</b>跟随主题变化。<br><b>关闭：</b>不跟随主题变化。",
+  BLACKBOARD_DARK_MODE_NAME: "深色主题黑板模式",
+  BLACKBOARD_DARK_MODE_DESC:
+    "在深色主题下，以粉笔质感绘制手绘风格的形状、线条、自由画笔和文字，如同黑板。“建筑师”线条风格的元素保持实线。便签、图片和嵌入内容不受影响。<br><b>开启：</b>深色主题使用粉笔质感。<br><b>关闭：</b>标准深色主题。",
+  RENDER_MARKDOWN_IN_TEXT_NAME: "在文本中渲染 Markdown",
+  RENDER_MARKDOWN_IN_TEXT_DESC:
+    "在自由文本、形状标签和便签中渲染行内 Markdown：<code>**粗体**</code>、<code>*斜体*</code>、<code>~~删除线~~</code>、<code>==高亮==</code>、<code>`代码`</code>、<code>&lt;u&gt;下划线&lt;/u&gt;</code>、无序和有序列表以及引用。不渲染标题。保存的文本不会改变。<br><b>开启：</b>带格式文本。<br><b>关闭：</b>原始文本。",
   DEFAULT_OPEN_MODE_NAME: "Excalidraw 的默认运行模式",
   DEFAULT_OPEN_MODE_DESC:
     "设置 Excalidraw 的运行模式：普通模式（Normal）/禅模式（Zen）/查看模式（View）。<br>" +

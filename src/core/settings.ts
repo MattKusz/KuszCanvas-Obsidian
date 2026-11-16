@@ -159,6 +159,7 @@ export class ExcalidrawSettingTab extends PluginSettingTab {
   private requestReloadDrawings: boolean = false;
   private requestUpdatePinnedPens: boolean = false;
   private requestUpdateDynamicStyling: boolean = false;
+  private requestRedrawRenderFlags: boolean = false; // KuszCanvas
   private readonly settingsPersistenceQueue: SettingsPersistenceQueue;
   private readonly settingBindings: SettingBindingRegistry;
   private readonly legacySettingsAdapter: LegacySettingsAdapter;
@@ -1433,6 +1434,12 @@ export class ExcalidrawSettingTab extends PluginSettingTab {
           excalidrawView.previousBackgroundColor,
           this.plugin.settings.dynamicStyling,
         ),
+      );
+    }
+    if (this.requestRedrawRenderFlags) {
+      this.requestRedrawRenderFlags = false;
+      getExcalidrawViews(this.app, true).forEach((excalidrawView) =>
+        excalidrawView.redrawAfterRenderFlagChange(),
       );
     }
     if (this.requestReloadDrawings) {
@@ -2960,6 +2967,30 @@ export class ExcalidrawSettingTab extends PluginSettingTab {
           } else {
             this.plugin.removeThemeObserver();
             }
+          },
+        },
+      },
+      {
+        name: t("BLACKBOARD_DARK_MODE_NAME"),
+        desc: fragWithHTML(t("BLACKBOARD_DARK_MODE_DESC")),
+        aliases: ["blackboard", "chalk", "dark mode", "chalkboard"],
+        control: {
+          type: "toggle",
+          key: "blackboardDarkMode",
+          before: () => {
+            this.requestRedrawRenderFlags = true;
+          },
+        },
+      },
+      {
+        name: t("RENDER_MARKDOWN_IN_TEXT_NAME"),
+        desc: fragWithHTML(t("RENDER_MARKDOWN_IN_TEXT_DESC")),
+        aliases: ["markdown", "bold", "italic", "rich text", "formatting"],
+        control: {
+          type: "toggle",
+          key: "renderMarkdownInText",
+          before: () => {
+            this.requestRedrawRenderFlags = true;
           },
         },
       },

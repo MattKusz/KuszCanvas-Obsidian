@@ -6,7 +6,7 @@ async function setup(t, overrides = {}) {
   const keys = ["window", "react", "reactDOM", "excalidrawLib", "ReactJSXRuntime", "ReactJSXDevRuntime", "unpackExcalidraw"];
   const previous = new Map(keys.map(key => [key, { exists: Object.hasOwn(globalThis, key), value: globalThis[key] }]));
   let evaluations = 0, common = 0, component = 0; const errors = [], notices = [];
-  const lib = { restoreElements() {}, exportToSvg() {}, OBSIDIAN_COMMON_HOST_PROTOCOL_VERSION: 1, OBSIDIAN_EXCALIDRAW_HOST_PROTOCOL_VERSION: 4,
+  const lib = { restoreElements() {}, exportToSvg() {}, OBSIDIAN_COMMON_HOST_PROTOCOL_VERSION: 2, OBSIDIAN_EXCALIDRAW_HOST_PROTOCOL_VERSION: 4,
     configureObsidianCommonHost() { common++; let active = true; return () => { if (active) { common--; active = false; } }; },
     configureObsidianExcalidrawHost() { component++; let active = true; return () => { if (active) { component--; active = false; } }; }, ...overrides };
   Object.assign(globalThis, { window: {}, react: {}, reactDOM: {}, excalidrawLib: null, ReactJSXRuntime: {}, ReactJSXDevRuntime: {}, unpackExcalidraw: () => "reviewed artifact" });
@@ -49,6 +49,12 @@ test("incompatible component protocol rolls back common host registration and ex
   const { manager, counts, errors, notices } = await setup(t, { OBSIDIAN_EXCALIDRAW_HOST_PROTOCOL_VERSION: 3 });
   assert.deepEqual(counts(), { evaluations: 1, common: 0, component: 0 });
   assert.equal(errors.length, 1); assert.match(String(errors[0]), /protocol 4/); assert.equal(notices.length, 1);
+  assert.throws(() => manager.getRuntimePackage(), /unavailable/); manager.destroy();
+});
+test("KuszCanvas: a common host protocol other than 2 fails fast and registers nothing", async t => {
+  const { manager, counts, errors, notices } = await setup(t, { OBSIDIAN_COMMON_HOST_PROTOCOL_VERSION: 1 });
+  assert.deepEqual(counts(), { evaluations: 1, common: 0, component: 0 });
+  assert.equal(errors.length, 1); assert.match(String(errors[0]), /common host protocol 2/); assert.equal(notices.length, 1);
   assert.throws(() => manager.getRuntimePackage(), /unavailable/); manager.destroy();
 });
 test("failed second adapter registration rolls back the first and permits idempotent teardown", async t => {

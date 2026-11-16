@@ -3,20 +3,20 @@
   "version": "0.18.147",
   "repository": "https://github.com/MattKusz/KuszCanvas.git",
   "branch": "kusch/whiteboard",
-  "commit": "9108457500f24844456a3d354eb395976cef3824",
+  "commit": "f0faf5e14a00ed4065467e035035fb7c766c23c7",
   "built": true,
-  "builtAt": "2026-11-13T05:33:20.648Z",
+  "builtAt": "2026-11-16T06:07:13.324Z",
   "artifacts": [
     {
       "name": "excalidraw.production.min.js",
-      "bytes": 6508987,
-      "sha256": "12d7568292333686fd6ce3443a7b9cace90da49329f94b48236f365d99d56666",
+      "bytes": 6509179,
+      "sha256": "c428d7cfa1a5b7abb26ebaedc1e5a07a3eb3aecabda3fd5a20af32c3feea2cc8",
       "tracked": true
     },
     {
       "name": "excalidraw.development.js",
-      "bytes": 30023455,
-      "sha256": "3311d8572bdd1e627faba2f09dbcacebc3d5cae0677c72908932e5e11f20d977",
+      "bytes": 30026296,
+      "sha256": "3311a68823f868403b3e1198af29e278719ebd90e48a93ab537bfaea0cdff58e",
       "tracked": false
     },
     {

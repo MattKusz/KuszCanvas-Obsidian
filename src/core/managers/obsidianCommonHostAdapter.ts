@@ -1,5 +1,5 @@
 import type ExcalidrawPlugin from "src/core/main";
-import { ExcalidrawLib } from "../../types/excalidrawLib";
+import type { ExcalidrawLib } from "../../types/excalidrawLib";
 
 const DEFAULT_AREA_LIMIT = 16_777_216;
 const DEFAULT_WIDTH_HEIGHT_LIMIT = 32_767;
@@ -38,4 +38,10 @@ export const createObsidianCommonHostAdapter = (
   }),
   getHighlightColor: (sceneBackgroundColor, opacity) =>
     plugin.getHighlightColor(sceneBackgroundColor, opacity),
+  // KuszCanvas (common host protocol 2): read on every render so a settings
+  // toggle takes effect on the next repaint. Strict `true` check because the
+  // renderer must never throw on a malformed settings file.
+  isBlackboardModeEnabled: () => plugin.settings.blackboardDarkMode === true,
+  isMarkdownTextRenderingEnabled: () =>
+    plugin.settings.renderMarkdownInText === true,
 });

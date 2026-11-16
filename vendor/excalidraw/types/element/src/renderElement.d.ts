@@ -31,6 +31,9 @@ export interface ExcalidrawElementWithCanvas {
     canvasOffsetY: number;
     imageCrop: ExcalidrawImageElement["crop"] | null;
     containingFrameOpacity: number;
+    /** KuszCanvas: host render flags the bitmap was drawn with */
+    blackboardMode: boolean;
+    markdownText: boolean;
 }
 export declare const DEFAULT_LINK_SIZE = 14;
 /**
