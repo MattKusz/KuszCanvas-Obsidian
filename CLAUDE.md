@@ -164,7 +164,7 @@ The customized component lives in the sibling `zsviczian/excalidraw` repository.
 
 - The fork is `MattKusz/KuszCanvas` at `../KuszCanvas` (`scripts/forkLocation.mjs`), not `../excalidraw`. Do not publish it to npm.
 - `package.json` depends on `"@zsviczian/excalidraw": "file:./vendor/excalidraw"`. Engine changes reach this plugin only through `npm run vendor:excalidraw` (build + copy + `SOURCE.json`); `--skip-build` records `built: false`, so prefer a full run before committing. Never hand-edit `vendor/excalidraw/`.
-- The vendor script refuses a dirty fork tree. Commit engine work first; keep fork scratch files in its `.tmp/`, which is excluded via the fork's `.git/info/exclude`.
+- The vendor script refuses a dirty fork tree. Commit engine work first; keep fork scratch files in its `.tmp/`, which the fork's `.gitignore` ignores.
 - Commit `vendor/excalidraw/{package.json,SOURCE.json,types/,dist/obsidian/*.production.min.*}`. Development artifacts and `vendor/excalidraw/node_modules/` are gitignored and regenerated.
 - `node_modules/@zsviczian/excalidraw` is a Windows junction holding an absolute path. After moving or renaming either repo folder, run `npm install` before building, or Rollup resolves a stale path.
 - To prove a vendoring-only change is behaviour-neutral, compare the production artifact SHA-256s against `SOURCE.json` and `cmp` the new `dist/main.js` against the previous build.
@@ -190,6 +190,8 @@ The fork is the source of truth for host-adapter contracts and protocol constant
 The host adapters are an internal protocol between this plugin and its exact `@zsviczian/excalidraw` dependency. They are not a compatibility surface between arbitrary historical plugin and fork versions.
 
 - A breaking adapter change must increment the relevant protocol version and update the fork implementation, fork tests, plugin adapter, and plugin ambient runtime declaration in one coordinated checkpoint.
+- The plugin restates the common host protocol number in three places; change all three together: the guard in `src/core/managers/PackageManager.ts` (`configureObsidianCommonHost`), `coordinatedCommonProtocol` in `scripts/testing/hostContracts.test.mjs`, and the fake lib's `OBSIDIAN_COMMON_HOST_PROTOCOL_VERSION` in `scripts/testing/package.source.test.mjs`.
+- Order for a protocol change: commit the fork, run `npm run vendor:excalidraw`, then `npm run test:contracts`. `hostContracts` fails against the previously vendored types until then; do not report that as a regression.
 - Fail fast during package loading when a required boundary is absent or incompatible. Do not retain global-plugin discovery or legacy bridge fallbacks solely to support mismatched plugin and fork versions.
 - Preserve the general backwards-compatibility requirements for persisted settings, serialized scenes, scripts, commands, and public APIs; this exception applies only to the paired internal host protocol.
 - For a maintainer-coordinated release, build and verify the fork package first, publish it, update the plugin's exact dependency, run `npm install`, and rebuild and smoke-test against the published artifact before committing the plugin handoff.
@@ -370,6 +372,8 @@ Use the layered test commands and explicit acceptance limits documented below. F
 Follow the mandatory [validation requirements](CODING_STANDARDS.md#validation-requirements). The testing guides below define commands and native environments.
 
 Known limitation: with `core.autocrlf=true`, `npm run test:fast` fails "portable skill stays aligned with native output…" in `scripts/testing/cli.test.mjs` because `docs/AITrainingData/excalidraw-cli/SKILL.md` is checked out with CRLF. Do not report it as a regression from unrelated work; check `git ls-files --eol` before investigating.
+
+Known limitation: `npm run test:fast` throws `Git provenance unavailable: spawnSync git ENOBUFS` while a vendor update is uncommitted, because `sourceIdentity` in `scripts/testing/contracts.mjs` reads `git diff --binary HEAD` through spawnSync's default 1 MB buffer and the single-line production bundle exceeds it. Commit the vendor update first, or run the discovered files directly with `node --experimental-transform-types --test <every *.test.mjs under scripts/testing and tests>` and tell the user the runner's report checks were skipped.
 
 ### Obsidian CLI runtime lane
 
