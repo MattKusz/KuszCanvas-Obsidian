@@ -827,10 +827,10 @@ export default {
     "<br><b>開啟：</b>跟隨主題變化。<br><b>關閉：</b>不跟隨主題變化。",
   BLACKBOARD_DARK_MODE_NAME: "深色主題黑板模式",
   BLACKBOARD_DARK_MODE_DESC:
-    "在深色主題下，以粉筆質感繪製手繪風格的形狀、線條、自由畫筆和文字，如同黑板。「建築師」線條風格的元素保持實線。便利貼、圖片和嵌入內容不受影響。<br><b>開啟：</b>深色主題使用粉筆質感。<br><b>關閉：</b>標準深色主題。",
+    "在深色主題下，畫布顯示為石板黑板，並以粉筆質感繪製手繪風格的形狀、線條、箭頭和框架、所有自由畫筆以及使用手寫字型的文字。填色的粉筆質感較淡。「建築師」線條風格的元素和其他字型的文字保持實線。便利貼保留紙張顏色；圖片和嵌入內容不受影響。深色主題下的匯出同樣帶有粉筆質感。<br><b>開啟：</b>深色主題使用粉筆質感。<br><b>關閉：</b>標準深色主題。",
   RENDER_MARKDOWN_IN_TEXT_NAME: "在文字中渲染 Markdown",
   RENDER_MARKDOWN_IN_TEXT_DESC:
-    "在自由文字、形狀標籤和便利貼中渲染行內 Markdown：<code>**粗體**</code>、<code>*斜體*</code>、<code>~~刪除線~~</code>、<code>==醒目提示==</code>、<code>`程式碼`</code>、<code>&lt;u&gt;底線&lt;/u&gt;</code>、項目符號與編號清單以及引用。不渲染標題。儲存的文字不會改變。<br><b>開啟：</b>帶格式文字。<br><b>關閉：</b>原始文字。",
+    "在自由文字、形狀標籤和便利貼中渲染行內 Markdown：<code>**粗體**</code>、<code>*斜體*</code>、<code>~~刪除線~~</code>、<code>==醒目提示==</code>、<code>`程式碼`</code>、<code>&lt;u&gt;底線&lt;/u&gt;</code>、項目符號與編號清單、引用以及表格。不渲染標題。編輯時，Ctrl/Cmd+B、I 和 U 可切換粗體、斜體和底線。儲存的文字不會改變。<br><b>開啟：</b>帶格式文字。<br><b>關閉：</b>原始文字。",
   DEFAULT_OPEN_MODE_NAME: "Excalidraw 的預設執行模式",
   DEFAULT_OPEN_MODE_DESC:
     "設定 Excalidraw 的執行模式：普通模式（Normal）/禪模式（Zen）/檢視模式（View）。<br>" +

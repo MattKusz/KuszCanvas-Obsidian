@@ -23,6 +23,15 @@ I build this plugin as a labor of love. Curious about the philosophy behind it? 
 - Choose a named frame or marker frame as the drawing thumbnail, pick frames from embed controls, and use **Navigate to frame** to jump within a drawing. Named frames are listed in the document's \`excalidraw-anchors\` property. [#3042](${URLs.GITHUB_COM_ZSVICZIAN_OBSIDIAN_EXCALIDRAW_PLUGIN_ISSUES}/3042).
 - Adjust outer padding for thumbnails, whole scenes and frames, or expand the captured area of \`area=\` drawing embeds from their Live Preview toolbar. Preview changes with the slider, then close it to save; Escape cancels. Inspired by 🙏[Evgene-Kopylov](${URLs.GITHUB_COM}/Evgene-Kopylov) [#2868](${URLs.GITHUB_COM_ZSVICZIAN_OBSIDIAN_EXCALIDRAW_PLUGIN_PULL}/2868).
 
+## KuszCanvas whiteboard
+- **Sticky notes** look like paper: tight corners, a soft shadow, a curled bottom edge and a slight tilt, with small colour differences between notes. Labels start at the top left. Notes added by scripts stay upright.
+- **Frames** take your current stroke, fill, sloppiness and edge styles and draw like rectangles. Existing frames keep their look until you change one of their styles.
+- **Frames grow to fit** elements you drag or draw into them, and shrink back if you pull away before dropping. One undo restores the frame.
+- **Hold Shift while drawing freehand** to snap the stroke to 0°, 45° or 90°. Pen pressure still shapes the line.
+- **Markdown in text.** Free text, shape labels and sticky notes show bold, italic, strikethrough, highlight, underline, inline code, lists, quotes and tables. Ctrl/Cmd+B, I and U toggle formatting while editing.
+- **Blackboard dark mode.** In dark theme the canvas becomes a slate board and sketchy shapes, freehand and hand-drawn text look like chalk. Architect-style elements stay solid and sticky notes keep their paper colours.
+- Switch Markdown text and blackboard mode in settings or directly from the main menu.
+
 ## Fixed
 - Drawing embeds render reliably in long notes in Reading view and with relative links in Live Preview. [#3039](${URLs.GITHUB_COM_ZSVICZIAN_OBSIDIAN_EXCALIDRAW_PLUGIN_ISSUES}/3039), [#3040](${URLs.GITHUB_COM_ZSVICZIAN_OBSIDIAN_EXCALIDRAW_PLUGIN_ISSUES}/3040).
 `,

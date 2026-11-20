@@ -899,10 +899,10 @@ export default {
     "<br><b><u>Toggle ON:</u></b> Follow theme changes<br><b><u>Toggle OFF:</u></b> Drawings are not affected by Obsidian theme changes",
   BLACKBOARD_DARK_MODE_NAME: "Blackboard dark mode",
   BLACKBOARD_DARK_MODE_DESC:
-    "In dark theme, render sketchy shapes, lines, freedraw and text with a chalk texture, like a blackboard. Elements with architect sloppiness stay solid. Sticky notes, images and embeds are never chalked.<br><b><u>Toggle ON:</u></b> Chalk texture in dark theme<br><b><u>Toggle OFF:</u></b> Standard dark theme",
+    "In dark theme, show the canvas as a slate board and render sketchy shapes, lines, arrows and frames, all freedraw, and text in the hand-drawn font with a chalk texture. Fills get a lighter grain. Elements with architect sloppiness and text in other fonts stay solid. Sticky notes keep their paper colours; images and embeds are never chalked. Dark-theme exports are chalked too.<br><b><u>Toggle ON:</u></b> Chalk texture in dark theme<br><b><u>Toggle OFF:</u></b> Standard dark theme",
   RENDER_MARKDOWN_IN_TEXT_NAME: "Render Markdown in text",
   RENDER_MARKDOWN_IN_TEXT_DESC:
-    "Render inline Markdown in free text, shape labels and sticky notes: <code>**bold**</code>, <code>*italic*</code>, <code>~~strike~~</code>, <code>==highlight==</code>, <code>`code`</code>, <code>&lt;u&gt;underline&lt;/u&gt;</code>, bullet and numbered lists and quotes. Headings are not rendered. The stored text is unchanged.<br><b><u>Toggle ON:</u></b> Styled text<br><b><u>Toggle OFF:</u></b> Raw text",
+    "Render inline Markdown in free text, shape labels and sticky notes: <code>**bold**</code>, <code>*italic*</code>, <code>~~strike~~</code>, <code>==highlight==</code>, <code>`code`</code>, <code>&lt;u&gt;underline&lt;/u&gt;</code>, bullet and numbered lists, quotes and tables. Headings are not rendered. While editing, Ctrl/Cmd+B, I and U toggle bold, italic and underline. The stored text is unchanged.<br><b><u>Toggle ON:</u></b> Styled text<br><b><u>Toggle OFF:</u></b> Raw text",
   DEFAULT_OPEN_MODE_NAME: "Default mode when opening Excalidraw",
   DEFAULT_OPEN_MODE_DESC:
     "Specifies the mode how Excalidraw opens: Normal, Zen, or View mode. You may also set this behavior on a file level by " +
