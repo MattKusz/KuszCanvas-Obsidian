@@ -18,6 +18,7 @@ import {
 } from "obsidian";
 import { convertSVGImage, getSVGImageData } from "src/shared/svgConversionActions";
 import { insertCodeBlock } from "./managers/codeBlockInsertion";
+import { setRenderFlagSetting } from "../core/managers/renderFlagToggles"; // KuszCanvas
 import {
   ExcalidrawElement,
   ExcalidrawImageElement,
@@ -127,6 +128,7 @@ import type {
 import {
   closeLeafView,
   getExcalidraAndMarkdowViewsForFile,
+  getExcalidrawViews,
   getLeaf,
   getParentOfClass,
   obsidianPDFQuoteWithRef,
@@ -730,6 +732,14 @@ export default class ExcalidrawView
         },
         openScriptInstallPrompt: () => this.actionOpenScriptInstallPrompt(),
         openExportImageDialog: () => this.actionOpenExportImageDialog(),
+        // KuszCanvas: main-menu render-flag switches, same effect as settings
+        setRenderFlag: (key, value) => {
+          setRenderFlagSetting(this.plugin, key, value, () =>
+            getExcalidrawViews(this.app, true),
+          ).catch((error) =>
+            console.error("KuszCanvas: could not save render flag", error),
+          );
+        },
       },
     );
     this.frameThumbnail = new FrameThumbnailController(this, MultiOptionConfirmationPrompt);

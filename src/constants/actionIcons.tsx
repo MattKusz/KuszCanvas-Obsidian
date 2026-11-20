@@ -365,6 +365,8 @@ export const ICONS = {
   releaseNotes: getIconAsJSX("megaphone"),
   rawMode: getIconAsJSX("code-xml"),
   parsedMode: getIconAsJSX("glasses"),
+  blackboardMode: getIconAsJSX("presentation"), // KuszCanvas -- main-menu switch
+  markdownText: getIconAsJSX("heading"), // KuszCanvas -- main-menu switch
   convertFile: (
     <svg
       aria-hidden="true"

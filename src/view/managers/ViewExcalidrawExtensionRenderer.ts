@@ -16,6 +16,7 @@ import {
   SwordColors,
 } from "../../constants/actionIcons";
 import { URLs } from "../../constants/safeUrls";
+import type { RenderFlagSetting } from "../../core/managers/renderFlagToggles";
 import { t } from "../../lang/helpers";
 import { ttdPersistenceAdapter } from "../../shared/TTDDialogPersistanceAdater";
 import { log } from "../../utils/debugHelper";
@@ -37,6 +38,8 @@ export interface ViewExcalidrawExtensionRendererDependencies {
   openUIModeSettings: () => void;
   openScriptInstallPrompt: () => void;
   openExportImageDialog: () => void;
+  /** KuszCanvas: writes a render-flag setting and redraws every drawing */
+  setRenderFlag: (key: RenderFlagSetting, value: boolean) => void;
 }
 
 /**
@@ -52,6 +55,26 @@ export class ViewExcalidrawExtensionRenderer {
     private readonly view: ExcalidrawView,
     private readonly dependencies: ViewExcalidrawExtensionRendererDependencies,
   ) {}
+
+  /**
+   * KuszCanvas: main-menu switch for a render-flag setting. Menu items mount
+   * each time the menu opens, so the setting is read here, not when
+   * `renderCustomActionsMenu` builds the (once-rendered) menu.
+   */
+  private readonly RenderFlagToggle = (props: {
+    setting: RenderFlagSetting;
+    icon: React.ReactElement;
+    label: string;
+  }) => {
+    const { MainMenu } = this.view.packages.excalidrawLib;
+    return this.view.packages.react.createElement(MainMenu.ItemToggle, {
+      icon: props.icon,
+      checked: this.view.plugin.settings[props.setting] === true,
+      onChange: (value: boolean) =>
+        this.dependencies.setRenderFlag(props.setting, value),
+      children: props.label,
+    });
+  };
 
   /** Renders Excalidraw's text-to-diagram dialog with the plugin AI provider. */
   public ttdDialog() {
@@ -359,6 +382,17 @@ export class ViewExcalidrawExtensionRenderer {
       React.createElement(MainMenu.DefaultItems.ChangeCanvasBackground),
       React.createElement(MainMenu.DefaultItems.Preferences),
       React.createElement(MainMenu.DefaultItems.ToggleTheme),
+      // KuszCanvas: render-flag switches; they write the plugin settings
+      React.createElement(this.RenderFlagToggle, {
+        setting: "blackboardDarkMode",
+        icon: ICONS.blackboardMode,
+        label: t("BLACKBOARD_DARK_MODE_NAME"),
+      }),
+      React.createElement(this.RenderFlagToggle, {
+        setting: "renderMarkdownInText",
+        icon: ICONS.markdownText,
+        label: t("RENDER_MARKDOWN_IN_TEXT_NAME"),
+      }),
       React.createElement(MainMenu.Separator),
       React.createElement(MainMenu.Item, {
         icon: ICONS.tray,

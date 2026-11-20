@@ -2503,6 +2503,10 @@
       "mode": "isolated-or-extracted"
     },
     {
+      "path": "scripts/testing/dynamicStyling.source.test.mjs",
+      "mode": "direct-module-or-tooling"
+    },
+    {
       "path": "scripts/testing/embedBridge.source.test.mjs",
       "mode": "direct-module-or-tooling"
     },
@@ -2728,6 +2732,10 @@
     },
     {
       "path": "scripts/testing/regression.test.mjs",
+      "mode": "direct-module-or-tooling"
+    },
+    {
+      "path": "scripts/testing/renderFlagToggles.source.test.mjs",
       "mode": "direct-module-or-tooling"
     },
     {
