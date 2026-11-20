@@ -1,5 +1,5 @@
 import type { ColorTuple, ColorPaletteCustom } from "@excalidraw/common";
-import type { ExcalidrawElement } from "@excalidraw/element/types";
+import type { ExcalidrawElement, Theme } from "@excalidraw/element/types";
 import "./ColorPicker.scss";
 import type { ColorPickerType } from "./colorPickerUtils";
 import type { AppState, UIAppState } from "../../types";
@@ -23,6 +23,9 @@ interface ColorPickerProps {
      * from the picker popup onto it. The value names the
      * `appState.colorTopPicks` slot the customization is stored in */
     customizableTopPicks?: keyof AppState["colorTopPicks"];
+    /** KuszCanvas: theme the swatches are drawn in, when it differs from the
+     * UI theme (sticky notes in blackboard mode stay light) */
+    swatchTheme?: Theme;
 }
-export declare const ColorPicker: import("react").MemoExoticComponent<({ type, color, onChange, label, elements, palette, topPicks, updateData, appState, excludedColors, customizableTopPicks, }: ColorPickerProps) => import("react/jsx-runtime").JSX.Element>;
+export declare const ColorPicker: import("react").MemoExoticComponent<({ type, color, onChange, label, elements, palette, topPicks, updateData, appState, excludedColors, customizableTopPicks, swatchTheme: swatchThemeProp, }: ColorPickerProps) => import("react/jsx-runtime").JSX.Element>;
 export {};

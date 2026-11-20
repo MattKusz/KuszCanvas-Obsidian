@@ -140,10 +140,10 @@ export class PackageManager {
       !lib ||
       typeof lib.configureObsidianCommonHost !== "function" ||
       typeof lib.OBSIDIAN_COMMON_HOST_PROTOCOL_VERSION !== "number" ||
-      Number(lib.OBSIDIAN_COMMON_HOST_PROTOCOL_VERSION) !== 2 // KuszCanvas -- render flags
+      Number(lib.OBSIDIAN_COMMON_HOST_PROTOCOL_VERSION) !== 4 // KuszCanvas -- render flags (2), accent colour added (3) then removed (4)
     ) {
       throw new Error(
-        "Excalidraw package requires Obsidian common host protocol 2",
+        "Excalidraw package requires Obsidian common host protocol 4",
       );
     }
 

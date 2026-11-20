@@ -1,3 +1,5 @@
+import type { RenderEnvironment } from "@excalidraw/element/renderEnvironment";
+import type { BlackboardView } from "./blackboardBackground";
 import type { StaticCanvasRenderConfig } from "../scene/types";
 import type { AppState, StaticCanvasAppState } from "../types";
 export declare const DEFAULT_SELECTION_COLOR = "#6965db";
@@ -27,7 +29,7 @@ export declare const snapScrollToDevicePixels: <T extends {
     };
 }>(appState: T, scale: number) => T;
 export declare const getNormalizedCanvasDimensions: (canvas: HTMLCanvasElement, scale: number) => [number, number];
-export declare const bootstrapCanvas: ({ canvas, scale, normalizedWidth, normalizedHeight, theme, isExporting, viewBackgroundColor, }: {
+export declare const bootstrapCanvas: ({ canvas, scale, normalizedWidth, normalizedHeight, theme, isExporting, viewBackgroundColor, view, environment, }: {
     canvas: HTMLCanvasElement;
     scale: number;
     normalizedWidth: number;
@@ -35,6 +37,10 @@ export declare const bootstrapCanvas: ({ canvas, scale, normalizedWidth, normali
     theme?: AppState["theme"];
     isExporting?: StaticCanvasRenderConfig["isExporting"];
     viewBackgroundColor?: StaticCanvasAppState["viewBackgroundColor"];
+    /** KuszCanvas: the scene view, to anchor the blackboard texture */
+    view?: BlackboardView;
+    /** KuszCanvas: creates the texture tile off-DOM */
+    environment?: RenderEnvironment;
 }) => CanvasRenderingContext2D;
 export declare const strokeRectWithRotation_simple: (context: CanvasRenderingContext2D, x: number, y: number, width: number, height: number, cx: number, cy: number, angle: number, fill?: boolean, 
 /** should account for zoom */

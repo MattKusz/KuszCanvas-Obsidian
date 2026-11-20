@@ -196,8 +196,17 @@ export declare const STICKY_NOTE_FOOTER: {
 export declare const STICKY_NOTE_BODY_INSET_Y: number;
 export declare const DEFAULT_STICKY_NOTE_SIZE = 250;
 export declare const STICKY_NOTE_MIN_SIZE = 75;
-export declare const STICKY_NOTE_SHADOW_OFFSET = 3;
-export declare const STICKY_NOTE_SHADOW_OPACITY = 0.16;
+/** opacity of the soft, blurred drop shadow under a sticky note */
+export declare const STICKY_NOTE_SHADOW_OPACITY = 0.3;
+/**
+ * The darkening over the bottom of the paper, where it starts to lift off the
+ * board: a gradient from clear at `1 - heightRatio` of the note's height to
+ * `opacity` black at its bottom edge.
+ */
+export declare const STICKY_NOTE_BOTTOM_SHADE: {
+    readonly heightRatio: 0.12;
+    readonly opacity: 0.07;
+};
 export declare const STICKY_NOTE_EDGE_SHADOW_WIDTH = 0.5;
 export declare const STICKY_NOTE_EDGE_SHADOW_OPACITY = 0.08;
 export declare const DEFAULT_FONT_FAMILY: FontFamilyValues;

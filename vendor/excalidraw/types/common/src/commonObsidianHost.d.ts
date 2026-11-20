@@ -13,7 +13,7 @@ import type { EditorInterface, StylesPanelMode } from "./editorInterface";
  * @see https://github.com/zsviczian/obsidian-excalidraw-plugin
  */
 /** Runtime protocol understood by this version of the fork. */
-export declare const OBSIDIAN_COMMON_HOST_PROTOCOL_VERSION: 2;
+export declare const OBSIDIAN_COMMON_HOST_PROTOCOL_VERSION: 4;
 /** Device capabilities supplied by the Obsidian host. */
 export type ObsidianDeviceType = Readonly<{
     isDesktop: boolean;

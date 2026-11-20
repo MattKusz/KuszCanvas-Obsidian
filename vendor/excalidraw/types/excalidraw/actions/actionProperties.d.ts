@@ -1,4 +1,5 @@
-import { type StrokeWidthKey } from "@excalidraw/common";
+import { // KuszCanvas
+type StrokeWidthKey } from "@excalidraw/common";
 import { LinearElementEditor } from "@excalidraw/element";
 import type { Arrowhead, ExcalidrawBindableElement, ExcalidrawElement, ExcalidrawFreeDrawElement, ExcalidrawLinearElement, ExcalidrawTextElement, ExcalidrawFrameElement, FontFamilyValues, StrokeVariability, NonDeleted, NonDeletedExcalidrawElement, TextAlign } from "@excalidraw/element/types";
 import type { AppClassProperties, AppState, Primitive } from "../types";

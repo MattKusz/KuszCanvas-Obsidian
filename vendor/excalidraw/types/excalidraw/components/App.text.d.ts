@@ -49,7 +49,14 @@ export declare class AppText {
      * the canvas it's kept within.
      */
     getMaxTextWidth: (offsets: Required<Offsets>) => number;
-    handleTextWysiwyg(element: NonDeleted<ExcalidrawTextElement>, { isExistingElement, initialCaretSceneCoords, initialSelection, }: {
+    /**
+     * Opens the text editor on the element. If the editor fails to open (in the
+     * web harness, for one, the host's link suggester throws without an
+     * Obsidian host), the half-started edit is rolled back before the error is
+     * rethrown: an `editingTextElement` with no editor would make every later
+     * pointer gesture a no-op.
+     */
+    handleTextWysiwyg(element: NonDeleted<ExcalidrawTextElement>, options: {
         isExistingElement?: boolean;
         /**
          * supply null if no caret positioning is desired, and instead
@@ -65,6 +72,9 @@ export declare class AppText {
             end: number;
         } | null;
     }): void;
+    /** Undoes what starting an edit did, for an editor that failed to open. */
+    private abortFailedTextEditing;
+    private openTextWysiwyg;
     private getSelectedTextElement;
     getSelectedTextEditingContainerAtPosition(hitElement: NonDeletedExcalidrawElement | null, sceneCoords: {
         x: number;

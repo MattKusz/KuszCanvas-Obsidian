@@ -2,8 +2,15 @@ import { type GlobalPoint } from "@excalidraw/math";
 import type { AppState, StaticCanvasAppState, InteractiveCanvasAppState, ElementRenderOverrides } from "@excalidraw/excalidraw/types";
 import type { StaticCanvasRenderConfig, RenderableElementsMap, InteractiveCanvasRenderConfig } from "@excalidraw/excalidraw/scene/types";
 import type { RenderEnvironment } from "./renderEnvironment";
+import type { FrameRenderPass } from "./frameStyle";
+import type { DeviceRect } from "./blackboard";
 import type { ExcalidrawElement, ExcalidrawTextElement, NonDeletedExcalidrawElement, ExcalidrawFreeDrawElement, ExcalidrawImageElement, NonDeletedSceneElementsMap, ElementsMap } from "./types";
 import type { RoughCanvas } from "roughjs/bin/canvas";
+/**
+ * Margin, in device px before zoom, around an element's cached canvas. Scene
+ * px of margin = padding / device scale.
+ */
+export declare const getCanvasPadding: (element: ExcalidrawElement) => number;
 export type RenderPositionOffset = Readonly<{
     x: number;
     y: number;
@@ -42,11 +49,29 @@ export declare const DEFAULT_LINK_SIZE = 14;
  * mustn't leave its transforms and clips behind for the next one.
  */
 export declare const withSavedContext: (context: CanvasRenderingContext2D, draw: () => void) => void;
+/**
+ * KuszCanvas: whether `element` renders as chalk (blackboard mode). Shared
+ * with the SVG exporter.
+ */
+export declare const isChalkedRender: (element: NonDeletedExcalidrawElement, elementsMap: ElementsMap, renderConfig: Readonly<{
+    theme: StaticCanvasRenderConfig["theme"];
+}>) => boolean;
+/**
+ * KuszCanvas: the box an element paints in, in its local drawing units
+ * (origin at `element.x`/`y`), with room for strokes and arrowheads.
+ */
+export declare const getChalkLocalBounds: (element: NonDeletedExcalidrawElement, elementsMap: ElementsMap) => DeviceRect;
 export declare const elementWithCanvasCache: WeakMap<ExcalidrawElement, ExcalidrawElementWithCanvas>;
 export declare const renderSelectionElement: (element: NonDeletedExcalidrawElement, context: CanvasRenderingContext2D, appState: InteractiveCanvasAppState, selectionColor: InteractiveCanvasRenderConfig["selectionColor"]) => void;
 export declare const renderElement: (element: NonDeletedExcalidrawElement, elementsMap: RenderableElementsMap, allElementsMap: NonDeletedSceneElementsMap, rc: RoughCanvas, context: CanvasRenderingContext2D, renderConfig: StaticCanvasRenderConfig, appState: StaticCanvasAppState | InteractiveCanvasAppState, renderState?: Readonly<{
     /** Alpha including frame opacity and pending erasure; selection dimming is separate. */
     opacity: number;
     offset: RenderPositionOffset;
-}>) => void;
+}>, 
+/**
+ * KuszCanvas: which part of a stylable frame to paint. The static scene
+ * paints a filled frame's "fill" below its children and its "stroke" at
+ * the frame's own z-index; everything else paints in full.
+ */
+framePass?: FrameRenderPass) => void;
 export declare function getFreedrawOutlineAsSegments(element: ExcalidrawFreeDrawElement, points: [number, number][], elementsMap: ElementsMap): import("@excalidraw/math").LineSegment<GlobalPoint>[];

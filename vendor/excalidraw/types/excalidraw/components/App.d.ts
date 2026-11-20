@@ -31,6 +31,7 @@ import { AppViewport } from "./App.viewport";
 import { AppWheel } from "./App.wheel";
 import { AppSelection } from "./App.selection";
 import { AppSelectionTool } from "./App.selectionTool";
+import { AppFrameLiveExpand } from "./App.frameLiveExpand";
 import { AppWrap } from "./App.wrap";
 import { AppHost } from "./App.host";
 import { CursorHints } from "./CursorHint";
@@ -157,6 +158,7 @@ declare class App extends React.Component<AppProps, AppState> {
     wheel: AppWheel;
     selection: AppSelection;
     selectionTool: AppSelectionTool;
+    frameLiveExpand: AppFrameLiveExpand;
     wrap: AppWrap;
     bindModeHandler: ReturnType<typeof setTimeout> | null;
     hitLinkElement?: NonDeletedExcalidrawElement;
@@ -766,6 +768,8 @@ declare class App extends React.Component<AppProps, AppState> {
     private updateMultiTouchGesture;
     private initialPointerDownState;
     private handleDraggingScrollBar;
+    private freedrawSnap;
+    private appendFreedrawPoint;
     private handleFreeDrawElementOnPointerDown;
     insertIframeElement: ({ sceneX, sceneY, width, height, }: {
         sceneX: number;

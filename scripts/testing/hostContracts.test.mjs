@@ -46,9 +46,10 @@ test(`plugin host and public Mermaid declarations match the ${typesSource} fork`
     const configure: typeof Host.configureObsidianExcalidrawHost = ExcalidrawLib.configureObsidianExcalidrawHost;
     const bridgeConfigure: typeof ExcalidrawLib.configureObsidianExcalidrawHost = canonicalConfigure;
 
-    // KuszCanvas: common host protocol 2 adds blackboard + Markdown-text flags
+    // KuszCanvas: common host protocol 2 adds blackboard + Markdown-text flags;
+    // protocol 4 drops protocol 3's accent colour
     declare const canonicalCommon: CommonHost.ObsidianCommonHostAdapter;
-    const coordinatedCommonProtocol: typeof CommonHost.OBSIDIAN_COMMON_HOST_PROTOCOL_VERSION = 2;
+    const coordinatedCommonProtocol: typeof CommonHost.OBSIDIAN_COMMON_HOST_PROTOCOL_VERSION = 4;
     const commonAdapter: CommonHost.ObsidianCommonHostAdapter =
       createObsidianCommonHostAdapter(plugin, ExcalidrawLib.OBSIDIAN_COMMON_HOST_PROTOCOL_VERSION);
     const commonBridge: ExcalidrawLib.ObsidianCommonHostAdapter = canonicalCommon;

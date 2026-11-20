@@ -47,6 +47,10 @@ declare const MainMenu: React.FC<{
         className?: string;
         selected?: boolean;
     } & React.HTMLAttributes<HTMLDivElement>) => import("react/jsx-runtime").JSX.Element;
+    ItemToggle: {
+        ({ checked, onChange, className, children, ...rest }: import("../dropdownMenu/DropdownMenuItemToggle").DropdownMenuItemToggleProps): import("react/jsx-runtime").JSX.Element;
+        displayName: string;
+    };
     Group: {
         ({ children, className, style, title, }: {
             children: React.ReactNode;

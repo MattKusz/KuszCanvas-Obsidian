@@ -31,4 +31,4 @@ export declare const getFormFactor: (editorWidth: number, editorHeight: number, 
 export declare const deriveStylesPanelMode: (editorInterface: EditorInterface) => StylesPanelMode;
 export declare const createUserAgentDescriptor: (userAgentString: string) => EditorInterface["userAgent"];
 export declare const loadDesktopUIModePreference: () => StylesPanelMode | null;
-export declare const setDesktopUIMode: (mode: EditorInterface["desktopUIMode"]) => "compact" | "full" | undefined;
+export declare const setDesktopUIMode: (mode: EditorInterface["desktopUIMode"]) => "full" | "compact" | undefined;

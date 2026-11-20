@@ -1,6 +1,7 @@
 import type { AppClassProperties, AppState, StaticCanvasAppState } from "@excalidraw/excalidraw/types";
 import type { ReadonlySetLike } from "@excalidraw/common/utility-types";
-import type { ExcalidrawElementsIncludingDeleted } from "./Scene";
+import type { ExcalidrawElementsIncludingDeleted, Scene } from "./Scene";
+import type { FrameBox } from "./frameLiveExpand";
 import type { ElementsMap, ElementsMapOrArray, ExcalidrawArrowElement, ExcalidrawElement, ExcalidrawFrameLikeElement, NonDeleted, NonDeletedExcalidrawElement } from "./types";
 export declare const bindElementsToFramesAfterDuplication: (nextElements: readonly ExcalidrawElement[], origElements: readonly ExcalidrawElement[], origIdToDuplicateId: Map<ExcalidrawElement["id"], ExcalidrawElement["id"]>) => void;
 export declare function isElementIntersectingFrame(element: ExcalidrawElement, frame: ExcalidrawFrameLikeElement, elementsMap: ElementsMap): boolean;
@@ -91,3 +92,28 @@ export declare const getDefaultFrameName: (element: ExcalidrawFrameLikeElement) 
 export declare const getFrameLikeTitle: (element: ExcalidrawFrameLikeElement) => string;
 export declare const getElementsOverlappingFrame: <T extends ExcalidrawElement>(elements: readonly T[], frame: ExcalidrawFrameLikeElement, elementsMap: ElementsMap) => T[];
 export declare const frameAndChildrenSelectedTogether: (selectedElements: readonly ExcalidrawElement[]) => boolean;
+/** Margin, in scene px, kept between a frame's grown edge and its children. */
+export declare const FRAME_AUTO_EXPAND_PADDING = 16;
+export type FrameExpansion = FrameBox;
+/**
+ * Whether auto-expand may change the frame. Locked frames keep their size by
+ * intent, marker frames are annotations rather than containers, and rotated
+ * frames (never created by the editor) have no axis-aligned edges to grow.
+ */
+export declare const isFrameAutoExpandable: (frame: ExcalidrawFrameLikeElement) => boolean;
+/**
+ * Pure: the geometry that makes the frame fit its children, or `null` when no
+ * child (or a child's bound text) reaches past the frame.
+ *
+ * Expand only. A side grows only where some child's rotated bounds pass it,
+ * and then to that child's edge plus `padding`; other sides stay where they
+ * are, so the frame never shrinks and its children never move.
+ * Locked, marker, rotated and deleted frames are never expanded.
+ */
+export declare const expandFrameToFitElements: (frame: ExcalidrawFrameLikeElement, elementsMap: ElementsMap, padding: number) => FrameExpansion | null;
+/**
+ * Grows each given frame to fit its children (see `expandFrameToFitElements`).
+ * Mutates through the scene so the change lands in the caller's scene update
+ * and, with it, the same undo step.
+ */
+export declare const expandFramesToFitElements: (frameIds: Iterable<ExcalidrawFrameLikeElement["id"] | null | undefined>, scene: Scene) => void;

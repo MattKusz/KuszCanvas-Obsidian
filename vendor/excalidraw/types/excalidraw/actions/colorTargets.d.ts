@@ -1,5 +1,5 @@
 import type { ColorPaletteCustom, ColorTuple } from "@excalidraw/common";
-import type { ExcalidrawElement } from "@excalidraw/element/types";
+import type { ExcalidrawElement, Theme } from "@excalidraw/element/types";
 import type { AppState } from "../types";
 export type ColorProperty = "strokeColor" | "backgroundColor";
 /**
@@ -37,3 +37,10 @@ export type ColorTarget = {
 export declare const resolveColorTarget: (appState: ColorTargetAppState, elements: readonly ExcalidrawElement[], property: ColorProperty) => ColorTarget;
 /** the current-item default updates for a picked color */
 export declare const getColorTargetAppStateUpdates: (target: ColorTarget, color: string) => Partial<AppState>;
+/**
+ * KuszCanvas: the theme the picker's swatches are drawn in. In blackboard
+ * mode a sticky note is paper and keeps its light-theme colours on the board
+ * (see `isPaperRender`), so its swatches skip the dark-mode filter too.
+ * Mixed selections keep the regular, dark-filtered swatches.
+ */
+export declare const getColorSwatchTheme: (kind: ColorTargetKind, theme: Theme, blackboardEnabled: boolean) => Theme;

@@ -1,6 +1,11 @@
 import type { RenderEnvironment } from "./renderEnvironment";
 import type { FontString, ExcalidrawTextElement } from "./types";
-export declare const measureText: (text: string, font: FontString, lineHeight: ExcalidrawTextElement["lineHeight"], env?: RenderEnvironment) => {
+export declare const measureText: (text: string, font: FontString, lineHeight: ExcalidrawTextElement["lineHeight"], env?: RenderEnvironment, 
+/**
+ * KuszCanvas: the unwrapped text `text` was wrapped from, so Markdown
+ * measuring tells wrapped tails from new list items. Optional.
+ */
+sourceText?: string) => {
     width: number;
     height: number;
 };

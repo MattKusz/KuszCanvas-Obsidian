@@ -1,0 +1,8 @@
+import type { MarkdownPaintOp } from "@excalidraw/element";
+/**
+ * Appends one node per op to `parent`.
+ *
+ * @param fontFamily the element's CSS font-family list, for non-code runs
+ * @param fontSize the element's font size in px
+ */
+export declare const appendMarkdownPaintOpsToSvg: (parent: SVGElement, ops: readonly MarkdownPaintOp[], fontFamily: string, fontSize: number) => void;

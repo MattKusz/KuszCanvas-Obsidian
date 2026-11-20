@@ -86,6 +86,19 @@ export declare const setColorAlpha: (color: string, alpha: number) => string;
  *  null if not valid color
  */
 export declare const colorToHex: (color: string) => string | null;
+/**
+ * Rotates the color's hue by `hue` degrees and adds `lightness` (a fraction
+ * of 1, clamped to [0, 1]) to its HSL lightness, keeping its alpha. Render-only
+ * helper: returns #RRGGBB, or #RRGGBBAA for a non-opaque color.
+ *
+ * An unparseable color is returned unchanged rather than thrown on: it is
+ * stored user data the canvas ignores anyway, and throwing would drop the
+ * whole element from the render.
+ */
+export declare const shiftColorTone: (color: string, shift: {
+    hue: number;
+    lightness: number;
+}) => string;
 export declare const isTransparent: (color: string) => boolean;
 /**
  * Whether the color is fully opaque (alpha exactly 1).

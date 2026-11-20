@@ -1,3 +1,4 @@
+import type { Radians } from "@excalidraw/math";
 import type { RenderEnvironment } from "./renderEnvironment";
 import type { Scene } from "./Scene";
 import type { VerticalResizeAnchor } from "./sizeHelpers";
@@ -17,6 +18,35 @@ export type StickyNotePathCommand = {
     type: "quadratic";
     control: StickyNoteRenderPoint;
     point: StickyNoteRenderPoint;
+};
+/** largest tilt a sticky note gets when it is placed with the tool: 1.5° */
+export declare const STICKY_NOTE_MAX_TILT: Radians;
+/**
+ * Bounds of the per-note, seed-derived look. All render-only: none of these
+ * is stored on the element.
+ */
+export declare const STICKY_NOTE_VARIATION_LIMITS: {
+    /** ± degrees of hue rotation of the paper color */
+    readonly hueShift: 3;
+    /** ± HSL lightness (fraction of 1) added to the paper color */
+    readonly lightnessShift: 0.04;
+    /** multiplier range of the curl lift */
+    readonly curlDepth: readonly [0.5, 1];
+    /** ± px sideways offset of the drop shadow */
+    readonly shadowOffsetX: 1.5;
+    /** px downward offset range of the drop shadow's bottom edge */
+    readonly shadowOffsetY: readonly [2.5, 4.5];
+};
+export type StickyNoteVariation = {
+    hueShift: number;
+    lightnessShift: number;
+    /** which bottom corners lift off the board */
+    curl: "left" | "right" | "both";
+    curlDepth: number;
+    shadowOffsetX: number;
+    shadowOffsetY: number;
+    /** 0–1 share of the roughness jitter the edges bow by */
+    edgeWaviness: number;
 };
 export declare const normalizeStickyNoteStrokeColor: (strokeColor: string | null | undefined) => string;
 export declare const normalizeStickyNoteBackgroundColor: (backgroundColor: string | null | undefined) => string;
@@ -47,15 +77,45 @@ export declare const getColorUpdate: (element: ExcalidrawElement, property: "str
  * color. Returns the same array when nothing needs to change.
  */
 export declare const syncStickyNoteInk: <T extends ExcalidrawElement>(elements: readonly T[], prevElementsMap: ElementsMap) => readonly T[];
+/**
+ * The note's individual look, derived from its seed alone: the same seed
+ * renders the same on canvas and in SVG, across redraws and clients.
+ */
+export declare const getStickyNoteVariation: (seed: number) => StickyNoteVariation;
+/**
+ * The tilt a note gets when the user places it with the sticky-note tool:
+ * within ±`STICKY_NOTE_MAX_TILT`, normalised to [0, 2π). Seed-derived so a
+ * test (or a replayed creation) gets the same angle.
+ */
+export declare const getStickyNoteCreationAngle: (seed: number) => Radians;
+/** the paper color as painted: the stored color, tone-shifted per note */
+export declare const getStickyNoteFillColor: (element: ExcalidrawStickyNoteElement) => string;
 export declare const getStickyNoteCornerRadius: (element: ExcalidrawStickyNoteElement) => number;
-export declare const getStickyNoteRenderPoints: (element: ExcalidrawStickyNoteElement, { offsetX, offsetY, seedOffset, }?: {
-    offsetX?: number;
-    offsetY?: number;
-    seedOffset?: number;
-}) => StickyNoteRenderPoint[];
-export declare const getStickyNotePathCommands: (element: ExcalidrawStickyNoteElement, { shadow }?: {
-    shadow?: boolean;
-}) => StickyNotePathCommand[];
+/** the paper's four corners (TL, TR, BR, BL), jittered by sloppiness */
+export declare const getStickyNoteRenderPoints: (element: ExcalidrawStickyNoteElement) => StickyNoteRenderPoint[];
+/** the paper's outline in element-local coordinates */
+export declare const getStickyNotePathCommands: (element: ExcalidrawStickyNoteElement) => StickyNotePathCommand[];
+export type StickyNoteShadow = {
+    /** outline of the shadow-casting shape, element-local, before blurring */
+    commands: StickyNotePathCommand[];
+    /**
+     * canvas `shadowBlur` (≈ 2σ) in element px; SVG takes half of it as the
+     * Gaussian `stdDeviation`
+     */
+    blur: number;
+    opacity: number;
+};
+/**
+ * The soft drop shadow: the paper's outline dropped further at the bottom
+ * than the top, and further still under a curled corner.
+ */
+export declare const getStickyNoteShadow: (element: ExcalidrawStickyNoteElement) => StickyNoteShadow;
+/**
+ * Upper bound, in element px, of how far the painted note (blurred shadow and
+ * jittered paper) reaches outside its width × height box. Analytic — no path
+ * is built — since the cached element canvas asks for it on every frame.
+ */
+export declare const getStickyNoteShadowExtent: (element: ExcalidrawStickyNoteElement) => number;
 export declare const normalizeStickyNoteFontSize: (fontSize: number) => number;
 /** whether the text element is the label of a sticky note */
 export declare const isStickyNoteBoundText: (textElement: ExcalidrawTextElement, elementsMap: ElementsMap) => boolean;

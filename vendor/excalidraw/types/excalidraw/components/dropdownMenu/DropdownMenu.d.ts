@@ -40,6 +40,10 @@ declare const DropdownMenu: {
     ItemCheckbox: (props: Omit<import("./DropdownMenuItem").DropdownMenuItemProps, "icon"> & {
         checked: boolean;
     }) => import("react/jsx-runtime").JSX.Element;
+    ItemToggle: {
+        ({ checked, onChange, className, children, ...rest }: import("./DropdownMenuItemToggle").DropdownMenuItemToggleProps): import("react/jsx-runtime").JSX.Element;
+        displayName: string;
+    };
     ItemLink: {
         ({ icon, shortcut, href, children, onSelect, className, selected, rel, ...rest }: {
             href: string;
