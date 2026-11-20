@@ -31,6 +31,33 @@ const isFrameElement = (el: unknown): el is ExcalidrawFrameElement => {
   return (el as { type: string }).type === "frame";
 };
 
+type DynamicFrameColor = { stroke: string; fill: string; nameColor: string };
+
+/**
+ * Whether a scene element is a frame that should be (re)coloured with the
+ * dynamic-styling frame palette. Frames styled like rectangles
+ * (`customData.frameStyle === "shape"`, created by the KuszCanvas engine)
+ * keep the stroke and fill their author chose.
+ */
+export const needsDynamicFrameColor = (
+  el: unknown,
+  frameColor: DynamicFrameColor,
+): el is ExcalidrawFrameElement => {
+  if (!isFrameElement(el)) {
+    return false;
+  }
+  if (el.customData?.frameStyle === "shape") {
+    return false;
+  }
+  const current = el.customData?.frameColor;
+  return !(
+    current &&
+    current.stroke === frameColor.stroke &&
+    current.fill === frameColor.fill &&
+    current.nameColor === frameColor.nameColor
+  );
+};
+
 export const setDynamicStyle = (
   ea: ExcalidrawAutomate,
   view: ExcalidrawView, //the excalidraw view
@@ -287,20 +314,15 @@ export const setDynamicStyle = (
           nameColor: str(isDark ? gray2().lighterBy(50) : gray2().darkerBy(50)),
         };
         const scene = api.getSceneElements() as unknown[];
-        scene.filter(isFrameElement).forEach((e) => {
-          const f = cloneElement(e);
-          addAppendUpdateCustomData(f, { frameColor });
-          if (
-            e.customData &&
-            e.customData.frameColor &&
-            e.customData.frameColor.stroke === frameColor.stroke &&
-            e.customData.frameColor.fill === frameColor.fill &&
-            e.customData.frameColor.nameColor === frameColor.nameColor
-          ) {
-            return;
-          }
-          view.excalidrawAPI.mutateElement(e, { customData: f.customData });
-        });
+        scene
+          .filter((e): e is ExcalidrawFrameElement =>
+            needsDynamicFrameColor(e, frameColor),
+          )
+          .forEach((e) => {
+            const f = cloneElement(e);
+            addAppendUpdateCustomData(f, { frameColor });
+            view.excalidrawAPI.mutateElement(e, { customData: f.customData });
+          });
 
         view.updateScene({
           appState: {
