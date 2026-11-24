@@ -12,7 +12,7 @@ export async function runMarkdownMigrationControl({ cli, drawingPath }) {
 async function exerciseMarkdownMigration(c, drawingPath) {
   const workspace = app.workspace, doc = workspace.containerEl.ownerDocument;
   const prefix = drawingPath.replace(/\.(excalidraw\.md|excalidraw|md)$/, "") + "_markdown_migration";
-  const ids = ["excalidraw-extras", "obsidian-excalidraw-plugin"];
+  const ids = ["excalidraw-extras", "kuszcanvas"];
   const check = (value, label) => { if (!value) throw Error(label); };
   check(!doc.querySelector("body > .print"), "Native print work must settle before host-only control");
   const base = workspace.getLeavesOfType("excalidraw").find(l => l.view.file?.path === drawingPath);

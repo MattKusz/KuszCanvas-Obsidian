@@ -24,7 +24,7 @@ export async function exerciseInteractionBehavior(c, env, rows, modifier) {
       try {
         if (row.id === "command-palette-selection-cancel") {
           const command =
-            app.commands.commands["obsidian-excalidraw-plugin:fullscreen"];
+            app.commands.commands["kuszcanvas:fullscreen"];
           check(command, "Fullscreen command missing");
           const before = JSON.stringify(api.getSceneElements()),
             wasFullscreen = view.isFullscreen();
@@ -106,7 +106,7 @@ export async function exerciseInteractionBehavior(c, env, rows, modifier) {
           await c.waitFor(() => view.isDirty(), "palette-save dirty edit");
           await click(
             await search(
-              app.commands.commands["obsidian-excalidraw-plugin:save"],
+              app.commands.commands["kuszcanvas:save"],
             ),
           );
           await c.waitFor(

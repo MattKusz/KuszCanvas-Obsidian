@@ -7,7 +7,7 @@ import { closeOwnedPopout } from "./closeOwnedPopout.mjs";
 const CONTROL = "__excalidrawImageGeometry";
 
 async function exercise(control, drawingPath, popout, realRenderer) {
-  const plugin = app.plugins.plugins["obsidian-excalidraw-plugin"];
+  const plugin = app.plugins.plugins["kuszcanvas"];
   const main = app.workspace.getLeavesOfType("excalidraw").find(l => l.view.file?.path === drawingPath);
   const c = globalThis[control];
   c.plugin = plugin;
@@ -76,7 +76,7 @@ async function exercise(control, drawingPath, popout, realRenderer) {
 }
 
 async function exerciseMarkdown(control, drawingPath) {
-  const c = globalThis[control], plugin = app.plugins.plugins["obsidian-excalidraw-plugin"];
+  const c = globalThis[control], plugin = app.plugins.plugins["kuszcanvas"];
   const leaf = app.workspace.getLeavesOfType("excalidraw").find(l => l.view.file?.path === drawingPath);
   const view = leaf.view, doc = view.ownerDocument;
   c.editorView = view;

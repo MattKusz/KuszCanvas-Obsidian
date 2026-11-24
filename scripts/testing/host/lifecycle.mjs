@@ -19,7 +19,7 @@ async function exerciseLifecycle(c, prefix, fixture, migrationRoute) {
     const originalCase = c.case.bind(c);
     c.case = (id, features, run) => originalCase(id.replace("native:", "diagnostic:host-drag:"), features, run);
   }
-  let plugin = app.plugins.plugins["obsidian-excalidraw-plugin"];
+  let plugin = app.plugins.plugins["kuszcanvas"];
   const doc = app.workspace.containerEl.ownerDocument, previous = app.workspace.activeLeaf, owned = new Set();
   const check = (condition, label) => { if (!condition) throw Error(label); };
   const focusMain = () => {
@@ -143,7 +143,7 @@ async function exerciseLifecycle(c, prefix, fixture, migrationRoute) {
   });
   await c.case("native:lifecycle-plugin-reload", ["P01", "P02", "P03"], async () => {
     const oldPlugin = plugin, oldViews = [main.view, survivor.view], oldRuntime = plugin.getCLIRuntime();
-    const settingsPath = app.vault.configDir + "/plugins/obsidian-excalidraw-plugin/data.json";
+    const settingsPath = app.vault.configDir + "/plugins/kuszcanvas/data.json";
     const markerKey = "__excalidrawReloadRegression";
     const settingsKeys = ["zoomMax", "linkOpacity", "exportPaddingSVG", "allowWheelZoom", "pasteCodeBlockAs", "pinnedScripts", "scriptEngineSettings", markerKey];
     const originalSettings = Object.fromEntries(settingsKeys.map(key => [key, {
@@ -151,7 +151,7 @@ async function exerciseLifecycle(c, prefix, fixture, migrationRoute) {
       value: plugin.settings[key],
     }]));
     c.defer(async () => {
-      const live = app.plugins.plugins["obsidian-excalidraw-plugin"];
+      const live = app.plugins.plugins["kuszcanvas"];
       if (!live?.isReady) throw Error("Live plugin unavailable for settings restoration");
       for (const [key, saved] of Object.entries(originalSettings)) {
         if (saved.present) live.settings[key] = saved.value;
@@ -167,19 +167,19 @@ async function exerciseLifecycle(c, prefix, fixture, migrationRoute) {
     await plugin.saveSettings();
     const persistedBeforeUnload = await app.vault.adapter.read(settingsPath);
     c.defer(async () => {
-      if (!app.plugins.plugins["obsidian-excalidraw-plugin"]) {
-        await app.plugins.enablePlugin("obsidian-excalidraw-plugin");
-        await c.waitForCleanup(() => app.plugins.plugins["obsidian-excalidraw-plugin"]?.isReady, "restore plugin after reload failure");
+      if (!app.plugins.plugins["kuszcanvas"]) {
+        await app.plugins.enablePlugin("kuszcanvas");
+        await c.waitForCleanup(() => app.plugins.plugins["kuszcanvas"]?.isReady, "restore plugin after reload failure");
       }
     });
-    await app.plugins.disablePlugin("obsidian-excalidraw-plugin");
+    await app.plugins.disablePlugin("kuszcanvas");
     await c.waitFor(() => oldViews.every(view => !view.excalidrawAPI), "plugin disable editor teardown");
     await oldPlugin.saveSettings();
     check(await app.vault.adapter.read(settingsPath) === persistedBeforeUnload, "late retired settings save replaced persisted preferences");
     let retired = false; try { oldPlugin.getCLIRuntime(); } catch { retired = true; } check(retired, "plugin disable retained runtime registrations");
-    await app.plugins.enablePlugin("obsidian-excalidraw-plugin");
-    await c.waitFor(() => app.plugins.plugins["obsidian-excalidraw-plugin"]?.isReady, "reloaded plugin readiness");
-    plugin = app.plugins.plugins["obsidian-excalidraw-plugin"];
+    await app.plugins.enablePlugin("kuszcanvas");
+    await c.waitFor(() => app.plugins.plugins["kuszcanvas"]?.isReady, "reloaded plugin readiness");
+    plugin = app.plugins.plugins["kuszcanvas"];
     check(plugin !== oldPlugin && plugin.getCLIRuntime() !== oldRuntime, "plugin reload reused retired instance");
     check(plugin.settings.zoomMax === 7 && plugin.settings.linkOpacity === 0.37 && plugin.settings.exportPaddingSVG === 0,
       "reload reset non-default or zero settings");
@@ -196,11 +196,11 @@ async function exerciseLifecycle(c, prefix, fixture, migrationRoute) {
     // Retain synthetic before/after data in failure evidence before restoration.
     c.observations ??= {};
     c.observations.emptySettingsRecovery = { before: replacementSettings };
-    await app.plugins.disablePlugin("obsidian-excalidraw-plugin");
+    await app.plugins.disablePlugin("kuszcanvas");
     await app.vault.adapter.write(settingsPath, "{}");
-    await app.plugins.enablePlugin("obsidian-excalidraw-plugin");
-    await c.waitFor(() => app.plugins.plugins["obsidian-excalidraw-plugin"]?.isReady, "empty-record startup recovery");
-    plugin = app.plugins.plugins["obsidian-excalidraw-plugin"];
+    await app.plugins.enablePlugin("kuszcanvas");
+    await c.waitFor(() => app.plugins.plugins["kuszcanvas"]?.isReady, "empty-record startup recovery");
+    plugin = app.plugins.plugins["kuszcanvas"];
     const recoveredSettings = await app.vault.adapter.read(settingsPath);
     c.observations.emptySettingsRecovery.after = recoveredSettings;
     check(recoveredSettings === replacementSettings, "empty-record startup replaced custom settings or unknown keys");
@@ -212,7 +212,7 @@ async function exerciseLifecycle(c, prefix, fixture, migrationRoute) {
       plugin.settings[markerKey]?.zero === 0, "empty-record recovery lost the latest unknown nested settings");
     main = await open(first); survivor = await open(second);
     check(main.view.excalidrawAPI.getSceneElements()[0].x === 654 && survivor.view.excalidrawAPI.getSceneElements()[0].x === 777, "reload lost drawing data");
-    check(Object.keys(app.commands.commands).filter(id => id === "obsidian-excalidraw-plugin:excalidraw-autocreate").length === 1, "command registration duplicated");
+    check(Object.keys(app.commands.commands).filter(id => id === "kuszcanvas:excalidraw-autocreate").length === 1, "command registration duplicated");
     return { assertions: ["disable unmounts editor APIs and retires runtime", "reload obtains a new plugin and runtime", "both saved drawings reopen", "stable command registered once",
       "custom settings, zero/false and unknown nested keys survive reload", "late old-instance saves preserve disk before and after replacement",
       "empty data.json record recovers from real device-local storage during plugin startup", "recovered disk bytes, wheel zoom, pinned tools and custom note types match the last valid save"] };

@@ -171,7 +171,7 @@ export function installLocalVault({
   }
   const installations = {};
   for (const [kind, id] of [
-    ["plugin", "obsidian-excalidraw-plugin"],
+    ["plugin", "kuszcanvas"],
     ["extras", "excalidraw-extras"],
     ...(combination.manifests.kplex ? [["kplex", "k-plex"]] : []),
   ]) {
@@ -343,7 +343,7 @@ export async function prepareLocalVault({
           return { quiescent: true, mobile: app.isMobile === true,closedPopouts:popouts.length };
         },
       });
-      for (const id of ["obsidian-excalidraw-plugin", "excalidraw-extras", "k-plex"]) {
+      for (const id of ["kuszcanvas", "excalidraw-extras", "k-plex"]) {
         const loaded = parseCLIJSON(
           cli(
             "eval",
@@ -371,7 +371,7 @@ export async function prepareLocalVault({
       execute: applyDeclaredHostConfiguration,
       args: declaredHostConfiguration(projectRoot),
     });
-    for (const id of ["excalidraw-extras", "k-plex", "obsidian-excalidraw-plugin"]) {
+    for (const id of ["excalidraw-extras", "k-plex", "kuszcanvas"]) {
       if (!Object.values(evidence.installations).some((i) => i.id === id))
         continue;
       await discoverStagedPlugin(cli, id);
@@ -405,7 +405,7 @@ export async function prepareLocalVault({
       readFileSync(
         join(
           projectRoot,
-          "tests/vault/.obsidian/plugins/obsidian-excalidraw-plugin/data.json",
+          "tests/vault/.obsidian/plugins/kuszcanvas/data.json",
         ),
         "utf8",
       ),
@@ -413,7 +413,7 @@ export async function prepareLocalVault({
     const loaded = parseCLIJSON(
       cli(
         "eval",
-        "code=JSON.stringify((()=>{const p=app.plugins.plugins['obsidian-excalidraw-plugin'],e=app.plugins.plugins['excalidraw-extras'];return {settings:p.settings,extras:e?{settings:e.settings,active:['mathjax','mermaid','pdf'].map(k=>e.api.features.isActive(k))}:null}})())",
+        "code=JSON.stringify((()=>{const p=app.plugins.plugins['kuszcanvas'],e=app.plugins.plugins['excalidraw-extras'];return {settings:p.settings,extras:e?{settings:e.settings,active:['mathjax','mermaid','pdf'].map(k=>e.api.features.isActive(k))}:null}})())",
       ),
     );
     for (const [key, value] of Object.entries(baseline))
@@ -473,7 +473,7 @@ export async function restoreLocalVaultBaseline({ projectRoot, cli }) {
       readFileSync(
         join(
           projectRoot,
-          "tests/vault/.obsidian/plugins/obsidian-excalidraw-plugin/data.json",
+          "tests/vault/.obsidian/plugins/kuszcanvas/data.json",
         ),
         "utf8",
       ),
@@ -514,7 +514,7 @@ export async function restoreLocalVaultBaseline({ projectRoot, cli }) {
         );
         if (pending.length !== 1)
           throw Error("Other native work is unsettled; preserve the vault");
-        const p = app.plugins.plugins["obsidian-excalidraw-plugin"],
+        const p = app.plugins.plugins["kuszcanvas"],
           e = app.plugins.plugins["excalidraw-extras"];
         if (!p?.isReady)
           throw Error("Cannot restore baseline without the installed plugin");

@@ -1,6 +1,6 @@
 /** Shared Markdown crop/width regression: scene validity, disk save and exports. */
 export async function exerciseMarkdownCrop(control, drawingPath) {
-  const c = globalThis[control], plugin = app.plugins.plugins["obsidian-excalidraw-plugin"];
+  const c = globalThis[control], plugin = app.plugins.plugins["kuszcanvas"];
   const leaf = app.workspace.getLeavesOfType("excalidraw").find(l => l.view.file?.path === drawingPath);
   const view = leaf.view;
   c.editorView = view;

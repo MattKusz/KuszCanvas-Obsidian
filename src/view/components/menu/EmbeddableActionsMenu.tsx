@@ -13,6 +13,7 @@ import { t } from "src/lang/helpers";
 import { ScriptEngine } from "../../../shared/Scripts";
 import {
   MD_EX_SECTIONS,
+  PLUGIN_ID,
   ROOTELEMENTSIZE,
   sceneCoordsToViewportCoords,
 } from "src/constants/constants";
@@ -354,9 +355,7 @@ export class EmbeddableMenu {
     if (!element) {
       return;
     }
-    this.view.app.commands.executeCommandById(
-      "obsidian-excalidraw-plugin:crop-image",
-    );
+    this.view.app.commands.executeCommandById(`${PLUGIN_ID}:crop-image`); // KuszCanvas -- command IDs follow the plugin ID
   }
 
   private actionReload(iframe: HTMLIFrameElement, link: string) {

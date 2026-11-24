@@ -9,7 +9,7 @@ import { writeReportFiles } from "../reportFiles.mjs";
 import {discoverStagedPlugin} from './pluginDiscovery.mjs';
 import {acquireBrowserDiagnostics, classifyCLIErrorText, splitWindowErrors} from './browserDiagnostics.mjs';
 
-export const PLUGIN_ID = "obsidian-excalidraw-plugin";
+export const PLUGIN_ID = "kuszcanvas";
 export const ARTIFACTS = ["main.js", "manifest.json", "styles.css"];
 const REQUIRED_CLI = ["version", "vault", "plugin:enable", "plugin:disable", "commands", "eval", "dev:errors"];
 const CONTROL = "__excalidrawCliSmoke";

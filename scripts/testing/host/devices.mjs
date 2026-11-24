@@ -317,7 +317,7 @@ export async function runDeviceMatrix({
 }
 
 async function exerciseDevice(c, path, fixture, profile) {
-  const p = app.plugins.plugins["obsidian-excalidraw-plugin"],
+  const p = app.plugins.plugins["kuszcanvas"],
     doc = app.workspace.containerEl.ownerDocument;
   await c.waitFor(
     () => {

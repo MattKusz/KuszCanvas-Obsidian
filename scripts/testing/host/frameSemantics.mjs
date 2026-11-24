@@ -55,7 +55,7 @@ export async function runFrameSemanticsScenario({ cli, drawingPath, contexts = [
 
 async function reloadSettings(c) {
   await c.case("native:frames:settings-reload", ["P01", "P02"], async () => {
-    const id = "obsidian-excalidraw-plugin", old = app.plugins.plugins[id], key = "__framePolicyFutureSetting";
+    const id = "kuszcanvas", old = app.plugins.plugins[id], key = "__framePolicyFutureSetting";
     const original = old.settings.thumbnailRenamePolicy;
     const settingsPath = app.vault.configDir + "/plugins/" + id + "/data.json";
     c.defer(async () => {
@@ -137,7 +137,7 @@ async function exercise(c, env, template, modifier, context, sceneExercise) {
     await env.input("Input.insertText", { text: "retained needle" });
     await c.waitFor(() => search.value === "retained needle", "Search sentinel entered");
     const before = search.value, scene = JSON.stringify(api.getSceneElements());
-    app.commands.executeCommandById("obsidian-excalidraw-plugin:navigate-to-frame");
+    app.commands.executeCommandById("kuszcanvas:navigate-to-frame");
     await c.waitFor(() => doc.querySelector(".prompt .suggestion-item"), "frame fuzzy picker opens in owner window");
     const items = [...doc.querySelectorAll(".prompt .suggestion-item")];
     check(items.length === 4 && items.some(item => item.textContent.includes("frame-unnamed")), "navigator omitted unnamed frame");

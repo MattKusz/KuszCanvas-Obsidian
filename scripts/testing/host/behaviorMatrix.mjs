@@ -70,7 +70,7 @@ export function behaviorInputDriver(cli, viewportScale=1) {
       );
       return parseCLIJSON(
         cli(
-          "obsidian-excalidraw-plugin:" + request.params.command,
+          "kuszcanvas:" + request.params.command,
           "json=" + JSON.stringify(request.params.request),
         ),
       );

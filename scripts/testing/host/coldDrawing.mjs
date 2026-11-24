@@ -1,6 +1,6 @@
 /** Native cold-start phases are serialized into the isolated host; never shipped. */
 export const prepareColdDrawing = async (c, path, fixture) => {
-  const p = app.plugins.plugins["obsidian-excalidraw-plugin"],
+  const p = app.plugins.plugins["kuszcanvas"],
     file = await app.vault.create(path, fixture),
     leaf = app.workspace.getLeaf("tab");
   await c.waitFor(() => p.isExcalidrawFile(file), "cold fixture metadata");

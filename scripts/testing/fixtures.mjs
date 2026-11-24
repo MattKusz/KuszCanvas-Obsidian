@@ -142,9 +142,9 @@ export function coreFixtures() {
         "properties",
       ]) + "\n",
     ".obsidian/community-plugins.json":
-      JSON.stringify(["obsidian-excalidraw-plugin", "excalidraw-extras"]) +
+      JSON.stringify(["kuszcanvas", "excalidraw-extras"]) +
       "\n",
-    ".obsidian/plugins/obsidian-excalidraw-plugin/data.json":
+    ".obsidian/plugins/kuszcanvas/data.json":
       JSON.stringify(
         {
           showReleaseNotes: false,

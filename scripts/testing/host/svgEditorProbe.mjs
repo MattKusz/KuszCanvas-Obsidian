@@ -1,7 +1,7 @@
 /** Existing command, EA workbench, native history/clipboard and persistence checks. */
 export async function probeSvgEditor(key, drawingPath, popout) {
   const c = globalThis[key],
-    plugin = app.plugins.plugins["obsidian-excalidraw-plugin"];
+    plugin = app.plugins.plugins["kuszcanvas"];
   const waitFor = async (predicate, label) => {
     c.stage = label;
     const deadline = Date.now() + 20000;
@@ -151,7 +151,7 @@ export async function probeSvgEditor(key, drawingPath, popout) {
     if (!selected) throw Error("supplied SVG sample missing");
     const beforeCommand = new Set(view.getViewElements().map((e) => e.id));
     if (
-      !app.commands.executeCommandById("obsidian-excalidraw-plugin:import-svg")
+      !app.commands.executeCommandById("kuszcanvas:import-svg")
     )
       throw Error("SVG command unavailable");
     const dialog = plugin.importSVGDialog;
@@ -180,7 +180,7 @@ export async function probeSvgEditor(key, drawingPath, popout) {
     );
     const beforeInvalid = view.getViewElements().length;
     app.workspace.setActiveLeaf(leaf, { focus: true });
-    app.commands.executeCommandById("obsidian-excalidraw-plugin:import-svg");
+    app.commands.executeCommandById("kuszcanvas:import-svg");
     dialog.onChooseItem(
       invalid,
       new view.ownerWindow.KeyboardEvent("keydown", { key: "Enter" }),

@@ -11,7 +11,7 @@ async function exercise(
   includePopout,
 ) {
   const c = globalThis[control],
-    plugin = app.plugins.plugins["obsidian-excalidraw-plugin"];
+    plugin = app.plugins.plugins["kuszcanvas"];
   const main = app.workspace
     .getLeavesOfType("excalidraw")
     .find((l) => l.view.file?.path === drawingPath);

@@ -18,7 +18,7 @@ export async function runStabilityScenario({cli,drawingPath,cycles=6}){
   return {id:'stability',status:'passed',fixtureHash:sha256(fixture),...result};
 }
 async function exerciseStability(c,path,fixture,cycles){
-  const p=app.plugins.plugins['obsidian-excalidraw-plugin'],doc=app.workspace.containerEl.ownerDocument;
+  const p=app.plugins.plugins['kuszcanvas'],doc=app.workspace.containerEl.ownerDocument;
   const check=(value,label)=>{if(!value)throw Error(label);};
   const beforeRoots=doc.querySelectorAll('.excalidraw-wrapper').length,previous=app.workspace.activeLeaf;
   let leaf;

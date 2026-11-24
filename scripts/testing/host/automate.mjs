@@ -10,7 +10,7 @@ export async function runAutomateScenario({cli,drawingPath}){
   return {id:'core-excalidraw-automate',status:'passed',...result};
 }
 async function exerciseAutomate(c,drawingPath,png,svgSource){
-  const p=app.plugins.plugins['obsidian-excalidraw-plugin'],view=app.workspace.getLeavesOfType('excalidraw').find(l=>l.view.file?.path===drawingPath)?.view;
+  const p=app.plugins.plugins['kuszcanvas'],view=app.workspace.getLeavesOfType('excalidraw').find(l=>l.view.file?.path===drawingPath)?.view;
   const check=(value,label)=>{if(!value)throw Error(label);};
   check(view?.excalidrawAPI,'Owned EA target missing');
   const ea=p.ea.getAPI(view),other=p.ea.getAPI(view);let cleanups=0;

@@ -7,7 +7,7 @@ export async function behaviorEnvironment(
   completeConsoleErrors,
   settleBrowserDiagnostics,
 ) {
-  const p = app.plugins.plugins["obsidian-excalidraw-plugin"],
+  const p = app.plugins.plugins["kuszcanvas"],
     mainDoc = app.workspace.containerEl.ownerDocument;
   const check = (condition, label) => {
     if (!condition) throw Error(label);

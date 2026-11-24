@@ -18,19 +18,19 @@ function fixture() {
   const reportDir = join(root, "reports");
   mkdirSync(configDir, { recursive: true });
   mkdirSync(join(projectRoot, "dist"), { recursive: true });
-  writeFileSync(join(configDir, "community-plugins.json"), '["obsidian-excalidraw-plugin"]');
-  const pluginDir = join(configDir, "plugins/obsidian-excalidraw-plugin");
+  writeFileSync(join(configDir, "community-plugins.json"), '["kuszcanvas"]');
+  const pluginDir = join(configDir, "plugins/kuszcanvas");
   mkdirSync(pluginDir, { recursive: true });
-  writeFileSync(join(pluginDir, "manifest.json"), JSON.stringify({ id: "obsidian-excalidraw-plugin" }));
+  writeFileSync(join(pluginDir, "manifest.json"), JSON.stringify({ id: "kuszcanvas" }));
   writeFileSync(join(projectRoot, "dist/main.js"), "// smoke build");
   writeFileSync(join(projectRoot, "dist/styles.css"), "/* smoke */");
-  writeFileSync(join(projectRoot, "dist/manifest.json"), JSON.stringify({ id: "obsidian-excalidraw-plugin", version: "test" }));
+  writeFileSync(join(projectRoot, "dist/manifest.json"), JSON.stringify({ id: "kuszcanvas", version: "test" }));
   return { vaultName: "excalidraw-test", vaultPath, configDir, projectRoot, reportDir };
 }
 
 test("requires the named test vault and refuses redirected plugin paths", () => {
   const input = fixture();
-  assert.ok(validateTarget(input).pluginDir.endsWith("obsidian-excalidraw-plugin"));
+  assert.ok(validateTarget(input).pluginDir.endsWith("kuszcanvas"));
   assert.throws(() => validateTarget({ ...input, vaultName: "personal-notes" }), /restricted/);
   assert.throws(() => validateTarget({ ...input, configDir: input.projectRoot }), /inside/);
 });
@@ -77,7 +77,7 @@ test("stages exact artifacts, asserts an editor and cleans its test drawing", as
     if (command === "vault") return input.vaultPath;
     if (command === "commands") {
       commandReads++;
-      return commandReads > 1 ? "obsidian-excalidraw-plugin:excalidraw-autocreate" : "";
+      return commandReads > 1 ? "kuszcanvas:excalidraw-autocreate" : "";
     }
     if (command === "dev:errors") return "No errors captured.";
     if (command === "eval") {

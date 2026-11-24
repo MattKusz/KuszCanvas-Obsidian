@@ -4,8 +4,8 @@ description: Create, inspect, edit and render Obsidian Excalidraw drawings throu
 ---
 
 Use a local terminal with Obsidian running and CLI enabled (API 1.12.2+).
-Always put vault="<name or ID>" before the command. Native root: obsidian-excalidraw-plugin.
-Start with obsidian vault="<vault>" obsidian-excalidraw-plugin:help, then :schema action=create.
+Always put vault="<name or ID>" before the command. Native root: kuszcanvas.
+Start with obsidian vault="<vault>" kuszcanvas:help, then :schema action=create.
 All results use apiVersion 1. Check ok, mutation and persistence; process exit zero alone does not prove success.
 Put large requests in a visible vault-relative JSON file and pass input="<file>". Inline json is for small requests.
 Requests in files include apiVersion:1; the native command supplies command. The in-process ea.executeCLI request also includes command.

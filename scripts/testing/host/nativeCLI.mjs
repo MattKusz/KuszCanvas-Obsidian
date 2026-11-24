@@ -9,7 +9,7 @@ export async function runNativeCLIScenario({ cli, drawingPath, reportDir }) {
   const paths = { drawing: `${prefix}.excalidraw.md`, request: `${prefix}.json`, png: `${prefix}.png`, svg: `${prefix}.svg`, disk: `${prefix}_disk.png`,
     script: `${prefix}_script.md`, template: `${prefix}_template.excalidraw.md`, invalid: `${prefix}_invalid.excalidraw.md` };
   const evaluate = code => JSON.parse(cli('eval', `code=${code}`).trim().replace(/^=>\s*/, ''));
-  const action = (command, request = {}) => JSON.parse(cli(`obsidian-excalidraw-plugin:${command}`, `json=${JSON.stringify({ apiVersion: 1, ...request })}`));
+  const action = (command, request = {}) => JSON.parse(cli(`kuszcanvas:${command}`, `json=${JSON.stringify({ apiVersion: 1, ...request })}`));
   const ok = (result) => { assert.equal(result.ok, true, JSON.stringify(result)); return result; };
   const write = (path, text) => evaluate(`(async()=>{const path=${JSON.stringify(path)},file=app.vault.getFileByPath(path);if(file)await app.vault.modify(file,${JSON.stringify(text)});else await app.vault.create(path,${JSON.stringify(text)});return JSON.stringify({written:true})})()`);
   const viewCode = `app.workspace.getLeavesOfType('excalidraw').find(leaf=>leaf.view.file?.path===${JSON.stringify(paths.drawing)})?.view`;
@@ -27,7 +27,7 @@ export async function runNativeCLIScenario({ cli, drawingPath, reportDir }) {
       { id: 'frame', type: 'frame', children: ['a', 'b', 'arrow'], name: 'Native CLI' },
     ] };
     write(paths.request, JSON.stringify(create));
-    const created = ok(JSON.parse(cli('obsidian-excalidraw-plugin:create', `input=${paths.request}`)));
+    const created = ok(JSON.parse(cli('kuszcanvas:create', `input=${paths.request}`)));
     assert.equal(created.persistence, 'saved'); assert.equal(created.data.createdIds.length, 6);
     assert.ok(created.data.createdIds.every(id => id.length === 8));
     assert.deepEqual(action('create', create), created);
@@ -49,7 +49,7 @@ export async function runNativeCLIScenario({ cli, drawingPath, reportDir }) {
     assert.equal(ok(action('read', { path: paths.drawing, source: 'disk', detail: 'elements' })).data.elements.find(element => element.id === label.id).rawText, 'Edited via native CLI');
     // Actual delayed text path, competing CLI write, and a newer human scene.
     live = read();
-    evaluate(`(()=>{const v=${viewCode},p=app.plugins.plugins['obsidian-excalidraw-plugin'];if(globalThis.${control})throw Error('test controller exists');const c={view:v,model:v.excalidrawData,original:v.excalidrawData.addTextElement,state:'waiting'};globalThis.${control}=c;c.gate=new Promise(resolve=>c.release=resolve);c.model.addTextElement=async function(...args){await c.gate;return c.original.apply(this,args)};p.executeCLI(${JSON.stringify({ apiVersion: 1, command: 'apply', requestId: `${idPrefix}-delayed`, path: paths.drawing, expectedRevision: live.revision, operations: [{ op: 'update', id: label.id, set: { text: 'Must not publish' } }] })}).then(result=>{c.result=result;c.state='finished'});return JSON.stringify({started:true})})()`);
+    evaluate(`(()=>{const v=${viewCode},p=app.plugins.plugins['kuszcanvas'];if(globalThis.${control})throw Error('test controller exists');const c={view:v,model:v.excalidrawData,original:v.excalidrawData.addTextElement,state:'waiting'};globalThis.${control}=c;c.gate=new Promise(resolve=>c.release=resolve);c.model.addTextElement=async function(...args){await c.gate;return c.original.apply(this,args)};p.executeCLI(${JSON.stringify({ apiVersion: 1, command: 'apply', requestId: `${idPrefix}-delayed`, path: paths.drawing, expectedRevision: live.revision, operations: [{ op: 'update', id: label.id, set: { text: 'Must not publish' } }] })}).then(result=>{c.result=result;c.state='finished'});return JSON.stringify({started:true})})()`);
     assert.equal(action('apply', { ...update, requestId: `${idPrefix}-competing`, expectedRevision: live.revision }).error.code, 'BUSY');
     evaluate(`(()=>{const c=globalThis.${control},v=c.view,a=v.excalidrawAPI;const elements=structuredClone(a.getSceneElements());elements.find(e=>e.type==='rectangle').x+=1;v.updateScene({elements,captureUpdate:'IMMEDIATELY'});c.model.addTextElement=c.original;c.release();return JSON.stringify({released:true})})()`);
     let delayed;

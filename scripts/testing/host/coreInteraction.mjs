@@ -8,7 +8,7 @@ export async function runCoreInteractionScenario({cli,drawingPath}){
   return{id:'core-trusted-interaction',status:'passed',...result};
 }
 async function exerciseCore(c,drawingPath,modifier){
-  const p=app.plugins.plugins['obsidian-excalidraw-plugin'],view=app.workspace.getLeavesOfType('excalidraw').find(l=>l.view.file?.path===drawingPath)?.view,api=view?.excalidrawAPI;
+  const p=app.plugins.plugins['kuszcanvas'],view=app.workspace.getLeavesOfType('excalidraw').find(l=>l.view.file?.path===drawingPath)?.view,api=view?.excalidrawAPI;
   const check=(value,label)=>{if(!value)throw Error(label);};check(api,'Owned core editor missing');
   const doc=view.ownerDocument,oldPens=p.settings.customPens,oldCount=p.settings.numberOfCustomPens;
   const wasFullscreen=view.isFullscreen(),events=[];

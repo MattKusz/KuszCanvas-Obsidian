@@ -20,7 +20,7 @@ export async function runSvgPaintScenario({ cli, drawingPath, reportDir }) {
 }
 
 async function probePaint(c, path) {
-  const plugin = app.plugins.plugins["obsidian-excalidraw-plugin"];
+  const plugin = app.plugins.plugins["kuszcanvas"];
   const view = app.workspace
     .getLeavesOfType("excalidraw")
     .find((l) => l.view.file?.path === path)?.view;

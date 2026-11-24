@@ -1,7 +1,7 @@
 /** Native browser source/baseline/current rendering oracle and real getIcon() corpus. */
 export async function probeSvgRendering(key, path, bridgeId, synthetic) {
   const c = globalThis[key],
-    p = app.plugins.plugins["obsidian-excalidraw-plugin"];
+    p = app.plugins.plugins["kuszcanvas"];
   const leaf = app.workspace
       .getLeavesOfType("excalidraw")
       .find((l) => l.view.file?.path === path),

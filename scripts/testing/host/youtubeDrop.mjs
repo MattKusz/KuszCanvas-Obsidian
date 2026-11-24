@@ -2,7 +2,7 @@
 import assert from "node:assert/strict";
 
 async function exercise(control, drawingPath) {
-  const c = globalThis[control], plugin = app.plugins.plugins["obsidian-excalidraw-plugin"];
+  const c = globalThis[control], plugin = app.plugins.plugins["kuszcanvas"];
   const main = app.workspace.getLeavesOfType("excalidraw").find(leaf => leaf.view.file?.path === drawingPath);
   const previous = structuredClone(plugin.settings.modifierKeyConfig);
   const existingFiles = new Set(app.vault.getFiles().map(file => file.path));

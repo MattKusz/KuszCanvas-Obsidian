@@ -15,7 +15,7 @@ export function assertConverterInstallation(root, kind) {
 }
 
 export function assertCompanionVersions(cli) {
-  const evidence = parseCLIJSON(cli("eval", "code=JSON.stringify((()=>{const p=app.plugins.plugins['obsidian-excalidraw-plugin'],extras=app.plugins.plugins['excalidraw-extras'];if(!p?.extrasGateway||!extras?.api)return {ready:false};return {ready:true,versions:extras.api.versions,checks:Object.fromEntries(['mathjax','mermaid','pdf','filesystem'].map(component=>[component,p.extrasGateway.checkVersion(component,extras.api)]))}})())"));
+  const evidence = parseCLIJSON(cli("eval", "code=JSON.stringify((()=>{const p=app.plugins.plugins['kuszcanvas'],extras=app.plugins.plugins['excalidraw-extras'];if(!p?.extrasGateway||!extras?.api)return {ready:false};return {ready:true,versions:extras.api.versions,checks:Object.fromEntries(['mathjax','mermaid','pdf','filesystem'].map(component=>[component,p.extrasGateway.checkVersion(component,extras.api)]))}})())"));
   assert.equal(evidence.ready, true, "Prepared plugin/Extras API unavailable; inspect enablement and startup errors before testing");
   const invalid = Object.entries(evidence.checks).filter(([, result]) => !result.valid);
   assert.equal(invalid.length, 0, `Prepared companion version mismatch: ${JSON.stringify(invalid)}. Refresh the selected workspace dependencies, build and deploy Extras main.js/styles.css/manifest.json, then verify the live API again.`);

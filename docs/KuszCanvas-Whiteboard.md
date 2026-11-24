@@ -6,6 +6,22 @@ This build of the plugin uses the KuszCanvas fork of Excalidraw
 records the engine commit. The features below live in that engine; the plugin
 supplies two settings and the main-menu switches for them.
 
+## Installing
+
+The plugin's ID is `kuszcanvas` and it shows as **KuszCanvas** in Obsidian, so
+it installs beside the official Excalidraw plugin (`obsidian-excalidraw-plugin`)
+instead of replacing it. Copy `dist/main.js`, `dist/manifest.json` and
+`dist/styles.css` into `<vault>/.obsidian/plugins/kuszcanvas/`, then enable
+**KuszCanvas** under **Settings → Community plugins**.
+
+Enable only one of the two at a time: both register the Excalidraw view and the
+`.excalidraw` file type. Settings are kept per plugin ID, so KuszCanvas starts
+with default settings. Code that looks the plugin up by its old ID
+(`app.plugins.plugins["obsidian-excalidraw-plugin"]`) does not find KuszCanvas:
+among the bundled scripts only "Add Link to New Page and Open" does this, and
+companion plugins may too. The `ExcalidrawAutomate` global still works. The command-line root is `kuszcanvas`, e.g.
+`obsidian vault="My vault" kuszcanvas:help`.
+
 ## Settings
 
 | Setting | Default | Where |

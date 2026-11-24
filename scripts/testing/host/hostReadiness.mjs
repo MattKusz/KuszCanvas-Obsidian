@@ -1,6 +1,6 @@
 import { parseCLIJSON } from "./inAppTask.mjs";
 /** Exact read-only probe; renderer reloads may erase operation receipts. */
-export const nativeReadyCode = 'JSON.stringify((()=>{const p=app.plugins?.plugins?.["obsidian-excalidraw-plugin"];return p?.isReady?{ready:true,runtime:!!p.getCLIRuntime(),mobile:app.isMobile===true}:{ready:false};})())';
+export const nativeReadyCode = 'JSON.stringify((()=>{const p=app.plugins?.plugins?.["kuszcanvas"];return p?.isReady?{ready:true,runtime:!!p.getCLIRuntime(),mobile:app.isMobile===true}:{ready:false};})())';
 /** Mode changes reload the host, briefly removing its CLI command registry. */
 export async function waitForNativeReady(cli, { timeoutMs = 60_000, now = () => Date.now(), wait = ms => new Promise(resolve => setTimeout(resolve, ms)), diagnostics = [] } = {}) {
   const end = now() + timeoutMs;

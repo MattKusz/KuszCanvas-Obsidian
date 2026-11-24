@@ -38,7 +38,7 @@ async function fixture(t, options = {}) {
     app: { appId: "isolated-settings-test", vault: { adapter: { stat: async () => {
       state.stats++; return options.stat ? options.stat() : { size: 100 };
     } } } },
-    manifest: { dir: ".obsidian/plugins/obsidian-excalidraw-plugin" },
+    manifest: { dir: ".obsidian/plugins/kuszcanvas" },
     settings: structuredClone(original),
     loadData: async () => { state.reads++; return options.load ? options.load() : structuredClone(state.disk); },
     saveData: async (data) => {

@@ -107,7 +107,7 @@ function fixture(t, extras = true, kplex = false) {
   const output = join(projectRoot, "frozen"),
     manifests = {};
   for (const [kind, id] of [
-    ["plugin", "obsidian-excalidraw-plugin"],
+    ["plugin", "kuszcanvas"],
     ...(extras ? [["extras", "excalidraw-extras"]] : []),
     ...(kplex ? [["kplex", "k-plex"]] : []),
   ]) {
@@ -175,7 +175,7 @@ test("local working vault contains hash-verified executable plugins and declared
     second = installLocalVault(input);
   assert.equal(first.seedHash, second.seedHash);
   for (const [kind, id] of [
-    ["plugin", "obsidian-excalidraw-plugin"],
+    ["plugin", "kuszcanvas"],
     ["extras", "excalidraw-extras"],
   ]) {
     const root = join(first.target.configDir, "plugins", id);
@@ -192,7 +192,7 @@ test("local working vault contains hash-verified executable plugins and declared
     JSON.parse(
       readFileSync(join(first.target.configDir, "community-plugins.json")),
     ),
-    ["obsidian-excalidraw-plugin", "excalidraw-extras"],
+    ["kuszcanvas", "excalidraw-extras"],
   );
   assert.equal(
     existsSync(join(first.target.vaultPath, "Assets/Small.pdf")),
@@ -208,7 +208,7 @@ test("missing Extras is explicit and cannot masquerade as installed coverage", (
     JSON.parse(
       readFileSync(join(result.target.configDir, "community-plugins.json")),
     ),
-    ["obsidian-excalidraw-plugin"],
+    ["kuszcanvas"],
   );
 });
 
@@ -241,7 +241,7 @@ test("corrupt producer bytes and redirected destinations cannot become a prepare
   const destination = join(target.configDir, "plugins/excalidraw-extras");
   rmSync(destination, { recursive: true });
   symlinkSync(
-    join(target.configDir, "plugins/obsidian-excalidraw-plugin"),
+    join(target.configDir, "plugins/kuszcanvas"),
     destination,
     process.platform === "win32" ? "junction" : "dir",
   );

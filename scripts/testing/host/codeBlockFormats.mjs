@@ -6,7 +6,7 @@ export async function exerciseCodeBlockFormats(c, env, modifier) {
     view.excalidrawAPI.updateScene({ elements: [], captureUpdate: "NEVER" });
     const source = " \r\n```js\r\nconsole.log('code format');\r\n``` \r\n";
     const normalized = "```js\nconsole.log('code format');\n```";
-    const settingsPath = app.vault.configDir + "/plugins/obsidian-excalidraw-plugin/data.json";
+    const settingsPath = app.vault.configDir + "/plugins/kuszcanvas/data.json";
     const disk = async () => JSON.parse(await app.vault.adapter.read(settingsPath));
     const ownedModals = new Set();
     c.defer(() => { for (const modal of ownedModals) if (modal.isConnected) modal.querySelector(".modal-close-button")?.click(); });

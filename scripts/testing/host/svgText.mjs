@@ -69,7 +69,7 @@ export async function runSvgTextScenario({ cli, drawingPath, reportDir }) {
 }
 
 async function probeText(c, path, source, expected) {
-  const plugin = app.plugins.plugins["obsidian-excalidraw-plugin"];
+  const plugin = app.plugins.plugins["kuszcanvas"];
   let view = app.workspace
     .getLeavesOfType("excalidraw")
     .find((l) => l.view.file?.path === path)?.view;

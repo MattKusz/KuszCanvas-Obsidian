@@ -42,7 +42,7 @@ export function createAcknowledgedCLI(run, {token=randomUUID().replaceAll('-',''
       || name==='dev:errors'&&args.length===0
       // Only this exact probe can cross a renderer reload without a receipt.
       || name==='eval'&&args.length===1&&args[0]==='code='+nativeReadyCode
-      || /^obsidian-excalidraw-plugin:(help|status|skill|list|schema|api|read|result)$/.test(name);
+      || /^kuszcanvas:(help|status|skill|list|schema|api|read|result)$/.test(name);
     if(readOnly)return read(name,args);
     if(name==='dev:errors'&&args.length===1&&args[0]==='clear') {
       try{return invoke(name,args,responseTimeoutMs);}

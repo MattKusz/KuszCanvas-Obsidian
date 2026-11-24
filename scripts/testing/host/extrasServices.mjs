@@ -74,7 +74,7 @@ export async function runExtrasServicesScenario({
 
 async function exerciseExtras(c, prefix, fixtures, drawingPath) {
   c.phase = "extras-services";
-  const plugin = app.plugins.plugins["obsidian-excalidraw-plugin"],
+  const plugin = app.plugins.plugins["kuszcanvas"],
     extras = app.plugins.plugins["excalidraw-extras"];
   const check = (value, label) => {
     if (!value) throw Error(label);

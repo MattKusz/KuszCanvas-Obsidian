@@ -230,7 +230,7 @@ export async function exerciseSettingsLifecycle(c, env, rows) {
         const disk = JSON.parse(
           await app.vault.adapter.read(
             app.vault.configDir +
-              "/plugins/obsidian-excalidraw-plugin/data.json",
+              "/plugins/kuszcanvas/data.json",
           ),
         );
         check(

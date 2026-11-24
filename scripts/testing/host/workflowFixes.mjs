@@ -15,7 +15,7 @@ export async function runWorkflowFixesScenario({cli,drawingPath,reportDir}) {
 }
 
 async function probeWorkflows(c,prefix,drawingPath,baseline) {
-  const p=app.plugins.plugins['obsidian-excalidraw-plugin'];
+  const p=app.plugins.plugins['kuszcanvas'];
   const originalLayout=app.workspace.getLayout(),leaves=[],doc=app.workspace.containerEl.ownerDocument;
   const settings=Object.fromEntries(['templateFilePath','previewImageType','canvasImmersiveEmbed','folder','embedUseExcalidrawFolder','compatibilityMode'].map(key=>[key,p.settings[key]]));
   const check=(condition,message)=>{if(!condition)throw Error(message);};
@@ -181,12 +181,12 @@ async function probeWorkflows(c,prefix,drawingPath,baseline) {
       const noteLeaf=app.workspace.getLeaf('tab');leaves.push(noteLeaf);await noteLeaf.openFile(note);
       const beforeText=await app.vault.read(note),beforeFiles=app.vault.getFiles().length,beforeFolders=app.vault.getAllLoadedFiles().length;
       p.settings.folder=prefix+'/EmbedCancelled';p.settings.embedUseExcalidrawFolder=true;
-      check(app.commands.executeCommandById('obsidian-excalidraw-plugin:excalidraw-autocreate-and-embed'),'embed command absent');
+      check(app.commands.executeCommandById('kuszcanvas:excalidraw-autocreate-and-embed'),'embed command absent');
       await wait(()=>doc.querySelector('.prompt'),'embed chooser');
       doc.dispatchEvent(new doc.defaultView.KeyboardEvent('keydown',{key:'Escape',code:'Escape',bubbles:true,cancelable:true}));await settle();
       check(app.vault.getFiles().length===beforeFiles&&app.vault.getAllLoadedFiles().length===beforeFolders,'embed cancellation created data');
       check((await app.vault.read(note))===beforeText&&noteLeaf.view.editor.getValue()===beforeText,'embed cancellation edited note');
-      check(app.commands.executeCommandById('obsidian-excalidraw-plugin:convert-to-excalidraw'),'conversion command absent');
+      check(app.commands.executeCommandById('kuszcanvas:convert-to-excalidraw'),'conversion command absent');
       await wait(()=>doc.querySelector('.prompt'),'convert chooser');
       doc.dispatchEvent(new doc.defaultView.KeyboardEvent('keydown',{key:'Escape',code:'Escape',bubbles:true,cancelable:true}));await settle();
       check((await app.vault.read(note))===beforeText&&noteLeaf.view.getViewType()==='markdown','cancelled conversion changed note/view');

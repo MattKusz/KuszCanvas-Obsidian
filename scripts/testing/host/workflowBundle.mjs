@@ -16,7 +16,7 @@ export async function runWorkflowBundleScenario({ cli, drawingPath }) {
 }
 
 async function exerciseWorkflows(c, prefix, fixture, settleBrowserDiagnostics) {
-  const plugin = app.plugins.plugins["obsidian-excalidraw-plugin"];
+  const plugin = app.plugins.plugins["kuszcanvas"];
   const mainDocument = app.workspace.containerEl.ownerDocument;
   const previous = app.workspace.activeLeaf, leaves = new Set(), tabs = new Set(), rootFiles = new Set();
   const attachmentFolderPath = app.vault.getConfig("attachmentFolderPath");

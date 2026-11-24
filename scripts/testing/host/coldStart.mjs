@@ -197,7 +197,7 @@ if (
       parseCLIJSON(
         cli(
           "eval",
-          "code=JSON.stringify((()=>{const p=app.plugins.plugins['obsidian-excalidraw-plugin'];if(!p?.isReady||!p.getCLIRuntime())return null;return require('@electron/remote').app.getAppMetrics().find(metric=>metric.type==='Browser')?.pid})())",
+          "code=JSON.stringify((()=>{const p=app.plugins.plugins['kuszcanvas'];if(!p?.isReady||!p.getCLIRuntime())return null;return require('@electron/remote').app.getAppMetrics().find(metric=>metric.type==='Browser')?.pid})())",
         ),
       );
     report.restart = await restartIsolatedHost({

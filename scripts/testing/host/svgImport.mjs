@@ -118,12 +118,12 @@ export async function runSvgImportScenario({ cli, drawingPath, reportDir }) {
     const snapshot = evaluate(
       `(()=>{const v=app.workspace.getLeavesOfType("excalidraw").find(l=>l.view.file?.path===${JSON.stringify(drawingPath)}).view;return JSON.stringify(v.getViewElements().map(e=>({id:e.id,type:e.type,x:e.x,y:e.y,width:e.width,height:e.height,angle:e.angle,points:e.points,groupIds:e.groupIds,backgroundColor:e.backgroundColor,strokeColor:e.strokeColor})))})()`,
     );
-    cli("plugin:disable", "id=obsidian-excalidraw-plugin");
-    cli("plugin:enable", "id=obsidian-excalidraw-plugin");
+    cli("plugin:disable", "id=kuszcanvas");
+    cli("plugin:enable", "id=kuszcanvas");
     let ready = false;
     for (let i = 0; i < 200; i++) {
       ready = evaluate(
-        'JSON.stringify(!!app.plugins.plugins["obsidian-excalidraw-plugin"]?.isReady)',
+        'JSON.stringify(!!app.plugins.plugins["kuszcanvas"]?.isReady)',
       );
       if (ready) break;
       await new Promise((r) => setTimeout(r, 100));

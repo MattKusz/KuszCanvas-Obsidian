@@ -66,7 +66,7 @@ test("failed stability loading retires the owned leaf before deleting its file",
     metadataCache: { getCache: () => ({ frontmatter }) },
     plugins: {
       plugins: {
-        "obsidian-excalidraw-plugin": { isExcalidrawFile: () => true },
+        "kuszcanvas": { isExcalidrawFile: () => true },
       },
     },
     workspace: {

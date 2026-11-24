@@ -2727,6 +2727,10 @@
       "mode": "direct-module-or-tooling"
     },
     {
+      "path": "scripts/testing/pluginId.source.test.mjs",
+      "mode": "direct-module-or-tooling"
+    },
+    {
       "path": "scripts/testing/provision.test.mjs",
       "mode": "direct-module-or-tooling"
     },

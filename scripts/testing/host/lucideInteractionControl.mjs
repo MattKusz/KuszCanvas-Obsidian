@@ -17,7 +17,7 @@ export function runLucideInteractionControl({ cli, drawingPath }) {
 }
 
 async function ordinaryPicker(c, path, modifier, settle) {
-  const p = app.plugins.plugins["obsidian-excalidraw-plugin"],
+  const p = app.plugins.plugins["kuszcanvas"],
     doc = app.workspace.containerEl.ownerDocument,
     win = doc.defaultView;
   const leaf = app.workspace
@@ -90,7 +90,7 @@ async function ordinaryPicker(c, path, modifier, settle) {
   );
   await click(doc.querySelector(".prompt input.prompt-input"));
   const command =
-    app.commands.commands["obsidian-excalidraw-plugin:insert-lucide-icon"];
+    app.commands.commands["kuszcanvas:insert-lucide-icon"];
   await input("Input.insertText", { text: command.name });
   let item;
   await c.waitFor(() => {

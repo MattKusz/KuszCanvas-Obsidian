@@ -10,7 +10,7 @@ export function captureNativeState(cli,label){
 /** Serialized into the main test-vault realm. No layout measurement, focus, observer or scheduling writes. */
 export function readNativeState(label){
   const workspace=app.workspace,doc=workspace.containerEl.ownerDocument;
-  const plugin=app.plugins.plugins['obsidian-excalidraw-plugin'];
+  const plugin=app.plugins.plugins['kuszcanvas'];
   const digest=value=>require('crypto').createHash('sha256').update(JSON.stringify(value)??'undefined').digest('hex');
   const settings=Object.fromEntries(Object.keys(plugin?.settings||{}).sort().map(key=>[key,digest(plugin.settings[key])]));
   const slots=target=>{

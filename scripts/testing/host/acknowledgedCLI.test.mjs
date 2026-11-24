@@ -80,8 +80,8 @@ test('a lost cleanup response is accepted only after confirming the receipt is a
 
 test('native commands still use the real CLI and normal protocol results preserve its JSON format',()=>{
   const calls=[];const t=createAcknowledgedCLI((name,...args)=>{calls.push({name,args});return name==='eval'?'=> {}':'{"ok":true}';},{token:'normal'});
-  assert.equal(t.cli('obsidian-excalidraw-plugin:apply','json={}'),'{"ok":true}');
-  assert.equal(calls[0].name,'obsidian-excalidraw-plugin:apply');
+  assert.equal(t.cli('kuszcanvas:apply','json={}'),'{"ok":true}');
+  assert.equal(calls[0].name,'kuszcanvas:apply');
   assert.equal(t.cli('dev:cdp','method=Input.dispatchTouchEvent','params={"type":"touchEnd","touchPoints":[]}'),'{}');
   assert.match(calls[1].args[0],/getCurrentWebContents/);
 });

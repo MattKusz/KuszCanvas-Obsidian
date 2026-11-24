@@ -12,7 +12,7 @@ export async function runDataIntegrityScenario({ cli, drawingPath }) {
 }
 
 async function exerciseDataIntegrity(c, prefix, fixtures) {
-  const p = app.plugins.plugins["obsidian-excalidraw-plugin"], originalLeaf = app.workspace.activeLeaf;
+  const p = app.plugins.plugins["kuszcanvas"], originalLeaf = app.workspace.activeLeaf;
   let mainAnchor;
   app.workspace.iterateAllLeaves(leaf => { if (!mainAnchor && leaf.getRoot() === app.workspace.rootSplit) mainAnchor = leaf; });
   if (!mainAnchor) throw Error("Main-window workspace anchor unavailable");

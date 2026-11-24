@@ -13,10 +13,10 @@ can be installed in your agent's normal skill directory manually. Excalidraw
 does not install agent configuration or require a particular model provider.
 
 ```sh
-obsidian vault="My vault" obsidian-excalidraw-plugin:help
-obsidian vault="My vault" obsidian-excalidraw-plugin:status
-obsidian vault="My vault" obsidian-excalidraw-plugin:schema action=create
-obsidian vault="My vault" obsidian-excalidraw-plugin:skill format=markdown
+obsidian vault="My vault" kuszcanvas:help
+obsidian vault="My vault" kuszcanvas:status
+obsidian vault="My vault" kuszcanvas:schema action=create
+obsidian vault="My vault" kuszcanvas:skill format=markdown
 ```
 
 Put `vault` before the command. On Windows use Obsidian's console launcher,
@@ -51,9 +51,9 @@ Save this UTF-8 JSON request as a visible vault file, for example `CLI/create.js
 ```
 
 ```sh
-obsidian vault="My vault" obsidian-excalidraw-plugin:create input="CLI/create.json"
-obsidian vault="My vault" obsidian-excalidraw-plugin:open path="Drawings/Flow.excalidraw.md"
-obsidian vault="My vault" obsidian-excalidraw-plugin:read path="Drawings/Flow.excalidraw.md" source=live detail=elements
+obsidian vault="My vault" kuszcanvas:create input="CLI/create.json"
+obsidian vault="My vault" kuszcanvas:open path="Drawings/Flow.excalidraw.md"
+obsidian vault="My vault" kuszcanvas:read path="Drawings/Flow.excalidraw.md" source=live detail=elements
 ```
 
 `create` uses the existing EA serializer, keeps template prose/metadata, and
@@ -162,10 +162,10 @@ If several views show the same drawing, specify `view` using its returned ID.
 Disk reads/exports reject a view ID. No command silently selects the active drawing.
 
 ```sh
-obsidian vault="My vault" obsidian-excalidraw-plugin:export path="Drawings/Flow.excalidraw.md" source=live out="Drawings/Flow.png" requestId=preview-1
-obsidian vault="My vault" obsidian-excalidraw-plugin:result requestId=flow-edit-1
-obsidian vault="My vault" obsidian-excalidraw-plugin:api surface=ea name=addText
-obsidian vault="My vault" obsidian-excalidraw-plugin:api surface=lib name=mutateElement
+obsidian vault="My vault" kuszcanvas:export path="Drawings/Flow.excalidraw.md" source=live out="Drawings/Flow.png" requestId=preview-1
+obsidian vault="My vault" kuszcanvas:result requestId=flow-edit-1
+obsidian vault="My vault" kuszcanvas:api surface=ea name=addText
+obsidian vault="My vault" kuszcanvas:api surface=lib name=mutateElement
 ```
 
 Export writes only the explicit `.svg`/`.png` artifact. Existing files require

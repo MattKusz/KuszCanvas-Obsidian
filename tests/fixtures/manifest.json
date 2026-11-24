@@ -41,15 +41,15 @@
     {
       "id": ".obsidian/community-plugins.json",
       "path": ".obsidian/community-plugins.json",
-      "sha256": "9c368c7ae1a93833fb93ac79d657eab3ddbb4b5859b9ecb2cccc4e0323ec7d2d",
-      "bytes": 51,
+      "sha256": "7d957d1551ebd7bef2624ced64ba0746d0e9a49f95e7f679706085e26453bc97",
+      "bytes": 35,
       "provenance": "Generated synthetic fixture; no imported vault or third-party artwork",
       "license": "CC0-1.0",
       "generator": "synthetic-native-v2"
     },
     {
-      "id": ".obsidian/plugins/obsidian-excalidraw-plugin/data.json",
-      "path": ".obsidian/plugins/obsidian-excalidraw-plugin/data.json",
+      "id": ".obsidian/plugins/kuszcanvas/data.json",
+      "path": ".obsidian/plugins/kuszcanvas/data.json",
       "sha256": "26d620c8337201b4623b94d11ca3fd6017099a4b22c5a30759f96120ab1a7b65",
       "bytes": 476,
       "provenance": "Generated synthetic fixture; no imported vault or third-party artwork",

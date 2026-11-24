@@ -62,7 +62,7 @@ The immutable seed in `tests/vault/` contains synthetic CC0 notes, drawings and
 assets plus `.obsidian` configuration and both plugins' `data.json`. The runner
 copies current builds into the working vault's plugin directories:
 
-- `.obsidian/plugins/obsidian-excalidraw-plugin/{main.js,manifest.json,styles.css,data.json}`
+- `.obsidian/plugins/kuszcanvas/{main.js,manifest.json,styles.css,data.json}`
 - `.obsidian/plugins/excalidraw-extras/{main.js,manifest.json,styles.css,data.json}`
 
 Executable builds, installed manifests and runtime work are ignored, never

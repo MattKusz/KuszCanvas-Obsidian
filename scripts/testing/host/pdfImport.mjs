@@ -22,7 +22,7 @@ export async function runPDFImportScenario({ cli, drawingPath }) {
   };
 }
 async function exercisePDF(c, drawingPath, pdf) {
-  const p = app.plugins.plugins["obsidian-excalidraw-plugin"],
+  const p = app.plugins.plugins["kuszcanvas"],
     view = app.workspace
       .getLeavesOfType("excalidraw")
       .find((l) => l.view.file?.path === drawingPath)?.view;

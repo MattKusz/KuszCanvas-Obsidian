@@ -248,7 +248,7 @@ export const ROUNDNESS = {
 } as const;
 export const THEME_FILTER = "invert(93%) hue-rotate(180deg) saturate(1.25)";
 export const URLFETCHTIMEOUT = 3000;
-export const PLUGIN_ID = "obsidian-excalidraw-plugin";
+export const PLUGIN_ID = "kuszcanvas"; // KuszCanvas -- must equal manifest.json id; renamed from the official plugin's ID so both can be installed
 export const SCRIPT_INSTALL_FOLDER = "Downloaded";
 export const fileid = customAlphabet("1234567890abcdef", 40);
 export const REG_LINKINDEX_INVALIDCHARS = /[<>:"\\|?*#]/g;

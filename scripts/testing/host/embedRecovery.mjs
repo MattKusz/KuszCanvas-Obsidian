@@ -8,7 +8,7 @@ const CONTROL = "__excalidrawEmbedRecovery";
 function setup(control, drawingPath, paths) {
   if (globalThis[control]) throw Error("embed controller already exists");
   if (paths.some(path => app.vault.getFileByPath(path))) throw Error("fixture path already exists");
-  const plugin = app.plugins.plugins["obsidian-excalidraw-plugin"];
+  const plugin = app.plugins.plugins["kuszcanvas"];
   const c = { plugin, drawingPath, paths, owned: [], state: "idle", paused: 0, hold: false,
     originalAwaitInit: plugin.awaitInit, hadOwnAwaitInit: Object.hasOwn(plugin, "awaitInit"),
     previewImageType: plugin.settings.previewImageType };

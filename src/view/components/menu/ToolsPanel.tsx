@@ -3,7 +3,7 @@ import { Notice, TFile } from "obsidian";
 import * as React from "react";
 import { ActionButton } from "./ActionButton";
 import { ICONS, saveIcon, stringToSVG } from "../../../constants/actionIcons";
-import { DEVICE, SCRIPT_INSTALL_FOLDER } from "../../../constants/constants";
+import { DEVICE, PLUGIN_ID, SCRIPT_INSTALL_FOLDER } from "../../../constants/constants";
 import {
   insertLaTeXToView,
   search,
@@ -452,9 +452,7 @@ export class ToolsPanel extends React.Component<PanelProps, PanelState> {
   }
 
   actionCropImage() {
-    this.getView()?.app.commands.executeCommandById(
-      "obsidian-excalidraw-plugin:crop-image",
-    );
+    this.getView()?.app.commands.executeCommandById(`${PLUGIN_ID}:crop-image`); // KuszCanvas -- command IDs follow the plugin ID
   }
 
   async actionRunScript(key: string) {

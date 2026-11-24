@@ -13,7 +13,7 @@ export async function runLucideScenario({cli,drawingPath,reportDir}) {
   const evaluate=code=>JSON.parse(cli('eval','code='+code).trim().replace(/^=>\s*/,''));
   const originalLayout=evaluate('JSON.stringify(app.workspace.getLayout())');
   const ordinaryInteraction=await runLucideInteractionControl({cli,drawingPath});
-  const action=(command,values={})=>JSON.parse(cli('obsidian-excalidraw-plugin:'+command,'json='+JSON.stringify({apiVersion:1,...values})));
+  const action=(command,values={})=>JSON.parse(cli('kuszcanvas:'+command,'json='+JSON.stringify({apiVersion:1,...values})));
   const ok=r=>{assert.equal(r.ok,true,JSON.stringify(r));return r;};
   let unsettled=false;
   let n=0;
@@ -61,16 +61,16 @@ export async function runLucideScenario({cli,drawingPath,reportDir}) {
     const probe=await runLegacyTask({cli,control:key,execute:probeLucide,args:[paths.drawing,drawingPath,catalog.map(e=>e.icon),paths.popout],timeoutMs:120000,cleanupMs:120000});
     const saved=read('disk');assert.equal(saved.assetIds.length,0);
     assert.ok(saved.elements.every(e=>e.type!=='image'));
-    evaluate(`(async()=>{const p=app.plugins.plugins['obsidian-excalidraw-plugin'];const view=app.workspace.getLeavesOfType('excalidraw').find(l=>l.view.file?.path===${JSON.stringify(paths.drawing)}).view;await p.lucidePicker.open(view);return JSON.stringify({open:true})})()`);
+    evaluate(`(async()=>{const p=app.plugins.plugins['kuszcanvas'];const view=app.workspace.getLeavesOfType('excalidraw').find(l=>l.view.file?.path===${JSON.stringify(paths.drawing)}).view;await p.lucidePicker.open(view);return JSON.stringify({open:true})})()`);
     cli('dev:screenshot','path='+join(reportDir,'lucide-picker.png'));
     return {id:'lucide-3019',status:'passed',evidenceKind:'native-cli-commands',transport:'native plugin CLI and trusted palette/UI',commands:['icons','create','read','open','apply','export'],ordinaryInteraction,catalog:catalog.length,artifacts,...probe.result};
   } catch(error) {unsettled=error.cleanupFailed===true;throw error;} finally {
-    if(!unsettled)evaluate(`(async()=>{const p=app.plugins.plugins['obsidian-excalidraw-plugin'];p?.lucidePicker?.tab?.close();delete globalThis.${key};for(const path of ${JSON.stringify(Object.values(paths))}){if(!path.startsWith('__excalidraw_cli_smoke_'))throw Error('Not an owned fixture');for(const leaf of app.workspace.getLeavesOfType('excalidraw').filter(l=>l.view.file?.path===path)){await leaf.setViewState({type:'empty',state:{}});leaf.detach()}const file=app.vault.getFileByPath(path);if(file)await app.vault.delete(file)}await app.workspace.changeLayout(${JSON.stringify(originalLayout)});return JSON.stringify({clean:true,layoutRestored:true})})()`);
+    if(!unsettled)evaluate(`(async()=>{const p=app.plugins.plugins['kuszcanvas'];p?.lucidePicker?.tab?.close();delete globalThis.${key};for(const path of ${JSON.stringify(Object.values(paths))}){if(!path.startsWith('__excalidraw_cli_smoke_'))throw Error('Not an owned fixture');for(const leaf of app.workspace.getLeavesOfType('excalidraw').filter(l=>l.view.file?.path===path)){await leaf.setViewState({type:'empty',state:{}});leaf.detach()}const file=app.vault.getFileByPath(path);if(file)await app.vault.delete(file)}await app.workspace.changeLayout(${JSON.stringify(originalLayout)});return JSON.stringify({clean:true,layoutRestored:true})})()`);
   }
 }
 
 async function probeLucide(key,path,otherPath,catalog,popoutPath) {
-  const p=app.plugins.plugins['obsidian-excalidraw-plugin'];
+  const p=app.plugins.plugins['kuszcanvas'];
   const trace=[];
   const phase=name=>{globalThis[key].phase='lucide:'+name;trace.push({name,at:Date.now()});};
   phase('catalog-conversion');

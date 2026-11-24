@@ -6,7 +6,7 @@ const CONTROL = "__excalidrawLatexInput";
 
 async function setup(control, drawingPath, realRenderer) {
   if (globalThis[control]) throw Error("LaTeX controller already exists");
-  const plugin = app.plugins.plugins["obsidian-excalidraw-plugin"];
+  const plugin = app.plugins.plugins["kuszcanvas"];
   const leaf = app.workspace.getLeavesOfType("excalidraw").find(l => l.view.file?.path === drawingPath);
   if (!leaf?.view.excalidrawAPI) throw Error("owned drawing missing");
   if (document.querySelector(".excalidraw-LatexPrompt .cm-editor")) throw Error("close the existing LaTeX dialog first");

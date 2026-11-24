@@ -13,7 +13,7 @@ test('passive native state reads preserve settings, layout, focus and scheduling
   const layout={main:{id:'split'},left:{collapsed:true},right:{collapsed:true}};
   const workspace={containerEl:{ownerDocument:doc},activeLeaf:leaf,activeEditor:view,getLayout:()=>layout,iterateAllLeaves:fn=>fn(leaf),floatingSplit:{children:[]},_:{'layout-change':[{},{}]},setActiveLeaf:forbidden};
   const wc={getBackgroundThrottling:()=>false,setBackgroundThrottling:forbidden,debugger:{isAttached:()=>true,listenerCount:()=>1}};
-  const context={app:{workspace,plugins:{plugins:{'obsidian-excalidraw-plugin':{settings}}}},require:name=>name==='crypto'?{createHash}:{getCurrentWebContents:()=>wc}};
+  const context={app:{workspace,plugins:{plugins:{'kuszcanvas':{settings}}}},require:name=>name==='crypto'?{createHash}:{getCurrentWebContents:()=>wc}};
   const result=vm.runInNewContext('('+readNativeState.toString()+')('+'"boundary"'+')',context);
   assert.equal(result.settings.falseValue,createHash('sha256').update('false').digest('hex'));
   assert.equal(result.settings.zeroValue,createHash('sha256').update('0').digest('hex'));

@@ -11,7 +11,7 @@ function harness({ supported = true, desktop = true, native = true } = {}) {
   class File { constructor(path) { this.path = path; this.extension = path.split('.').at(-1); this.stat = { size: 1 }; } }
   const files = [new File('a.excalidraw.md'), new File('Drawings/b.excalidraw.md')];
   const plugin = {
-    manifest: { id: 'obsidian-excalidraw-plugin', version: 'test' }, isReady: true,
+    manifest: { id: 'kuszcanvas', version: 'test' }, isReady: true,
     app: { vault: { getName: () => 'Test', getFileByPath: path => files.find(file => file.path === path), getFiles: () => files,
       read: async file => file.content ?? '{}' }, workspace: { getLeavesOfType: () => [] } },
     isExcalidrawFile: file => file.path.endsWith('.excalidraw.md'), getCLIRuntime: () => ({ convertToExcalidrawElements() {} }),
@@ -104,7 +104,7 @@ test('dispatcher returns stable failures for unknown fields, commands and versio
 });
 
 test('native file/inline JSON is exclusive and values must agree with flags', async () => {
-  const h = harness(); h.manager.initialize(); const run = h.registrations.get('obsidian-excalidraw-plugin:read');
+  const h = harness(); h.manager.initialize(); const run = h.registrations.get('kuszcanvas:read');
   assert.equal(JSON.parse(await run({ input: 'a.excalidraw.md', json: '{}' })).error.code, 'INVALID_INPUT');
   assert.equal(JSON.parse(await run({ json: JSON.stringify({ apiVersion: 1, path: 'a.excalidraw.md' }), path: 'Drawings/b.excalidraw.md' })).error.field, 'path');
   assert.equal(JSON.parse(await run({ path: 'a.excalidraw.md', selectedOnly: 'yes' })).error.field, 'selectedOnly');

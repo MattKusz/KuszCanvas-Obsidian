@@ -4,7 +4,7 @@ import { runLegacyTask } from './legacyTask.mjs';
 
 async function exercise(control, drawingPath) {
   const c = globalThis[control];
-  const plugin = app.plugins.plugins["obsidian-excalidraw-plugin"];
+  const plugin = app.plugins.plugins["kuszcanvas"];
   const main = app.workspace.getLeavesOfType("excalidraw").find(l => l.view.file?.path === drawingPath);
   const previous = { min: plugin.settings.zoomMin, max: plugin.settings.zoomMax };
   c.results = [];

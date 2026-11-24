@@ -13,6 +13,7 @@ import {
 import {
   DEVICE,
   MARKDOWN_TO_SVG_RENDER_CLASS,
+  PLUGIN_ID,
   RERENDER_EVENT,
   getCommonBoundingBox,
 } from "../../constants/constants";
@@ -736,9 +737,7 @@ const createImgElement = async (
     if (imgOrDiv?.parentElement?.hasClass("canvas-node-content")) {
       return;
     }
-    const PLUGIN = app.plugins.plugins[
-      "obsidian-excalidraw-plugin"
-    ] as ExcalidrawPlugin;
+    const PLUGIN = app.plugins.plugins[PLUGIN_ID] as ExcalidrawPlugin; // KuszCanvas -- was the literal plugin ID
     const timeoutValue = DEVICE.isDesktop
       ? PLUGIN.settings.longPressDesktop
       : PLUGIN.settings.longPressMobile;

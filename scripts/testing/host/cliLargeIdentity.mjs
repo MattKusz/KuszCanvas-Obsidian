@@ -5,7 +5,7 @@ export async function runCLILargeIdentity({ evaluate, viewCode, path, out, reque
   const control = '__excalidrawLargeCLIIdentity';
   const result = evaluate(`(async()=>{
     if(globalThis.${control})throw Error('large identity controller exists');
-    const v=${viewCode},a=v.excalidrawAPI,m=v.excalidrawData,p=app.plugins.plugins['obsidian-excalidraw-plugin'];
+    const v=${viewCode},a=v.excalidrawAPI,m=v.excalidrawData,p=app.plugins.plugins['kuszcanvas'];
     const c={api:a,model:m,getFiles:a.getFiles,exportData:m.exportPreparedSaveData};globalThis.${control}=c;
     try {
       const original=a.getFiles(),files={...original},body='A'.repeat(2*1024*1024),metadata=c.exportData.call(m);

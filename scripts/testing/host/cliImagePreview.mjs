@@ -11,7 +11,7 @@ export async function runCLIImagePreviewScenario({ cli, drawingPath, reportDir }
   const outputs = [], artifacts = []; let largeIdentity;
   const control = '__excalidrawImagePreviewRegression';
   const evaluate = code => JSON.parse(cli('eval', `code=${code}`).trim().replace(/^=>\s*/, ''));
-  const action = (command, values = {}) => JSON.parse(cli(`obsidian-excalidraw-plugin:${command}`, `json=${JSON.stringify({ apiVersion: 1, ...values })}`));
+  const action = (command, values = {}) => JSON.parse(cli(`kuszcanvas:${command}`, `json=${JSON.stringify({ apiVersion: 1, ...values })}`));
   const ok = result => { assert.equal(result.ok, true, JSON.stringify(result)); return result; };
   const id = suffix => `${prefix.split('/').at(-1).slice(-38)}-${suffix}`;
   const viewCode = `app.workspace.getLeavesOfType('excalidraw').find(l=>l.view.file?.path===${JSON.stringify(paths.drawing)})?.view`;
@@ -31,7 +31,7 @@ export async function runCLIImagePreviewScenario({ cli, drawingPath, reportDir }
       { op: 'image', id: 'icon', asset: paths.icon, x: 600, y: 240, scale: false },
     ] }));
     const rasterId = inserted.data.idMap.raster;
-    evaluate(`(async()=>{const v=${viewCode},a=v.excalidrawAPI,es=structuredClone(a.getSceneElements()),e=es.find(e=>e.id===${JSON.stringify(rasterId)});e.width=200;e.height=100;e.customData={preserved:'yes'};const copies=[{id:'crop0001',x:260,y:20,crop:{x:80,y:40,width:160,height:80,naturalWidth:320,naturalHeight:160}},{id:'flip0001',x:20,y:170,scale:[-1,1]},{id:'turn0001',x:260,y:180,angle:0.5,opacity:65},{id:'frameimg',x:510,y:20,frameId:'frame001',angle:0.2}].map((p,i)=>({...e,...p,version:1,seed:700+i,versionNonce:800+i}));const frame=app.plugins.plugins['obsidian-excalidraw-plugin'].getCLIRuntime().convertToExcalidrawElements([{id:'frame001',type:'frame',x:520,y:10,width:140,height:140,name:'Clipping',children:[]}])[0];for(const copy of copies)if(copy.frameId==='frame001')copy.frameId=frame.id;v.updateScene({elements:[...es,...copies,frame],captureUpdate:'IMMEDIATELY'});await v.saveWithOutcome();return JSON.stringify({ready:true})})()`);
+    evaluate(`(async()=>{const v=${viewCode},a=v.excalidrawAPI,es=structuredClone(a.getSceneElements()),e=es.find(e=>e.id===${JSON.stringify(rasterId)});e.width=200;e.height=100;e.customData={preserved:'yes'};const copies=[{id:'crop0001',x:260,y:20,crop:{x:80,y:40,width:160,height:80,naturalWidth:320,naturalHeight:160}},{id:'flip0001',x:20,y:170,scale:[-1,1]},{id:'turn0001',x:260,y:180,angle:0.5,opacity:65},{id:'frameimg',x:510,y:20,frameId:'frame001',angle:0.2}].map((p,i)=>({...e,...p,version:1,seed:700+i,versionNonce:800+i}));const frame=app.plugins.plugins['kuszcanvas'].getCLIRuntime().convertToExcalidrawElements([{id:'frame001',type:'frame',x:520,y:10,width:140,height:140,name:'Clipping',children:[]}])[0];for(const copy of copies)if(copy.frameId==='frame001')copy.frameId=frame.id;v.updateScene({elements:[...es,...copies,frame],captureUpdate:'IMMEDIATELY'});await v.saveWithOutcome();return JSON.stringify({ready:true})})()`);
     ok(action('apply', { requestId: id('labels'), path: paths.drawing, expectedRevision: read().revision, operations: [
       { op: 'imageMetadata', id: rasterId, label: 'Red & <green> 安全', tags: ['detail'] },
       { op: 'imageMetadata', id: 'crop0001', label: 'Cropped', tags: ['context'] },
@@ -99,10 +99,10 @@ export async function runCLIImagePreviewScenario({ cli, drawingPath, reportDir }
     assert.equal(metadata.preserved, 'yes'); assert.equal(metadata.excalidrawCLI.label, undefined); assert.deepEqual(metadata.excalidrawCLI.tags, ['detail']);
     // File transport and complete-asset overwrite protection, including omitted originals.
     evaluate(`(async()=>{await app.vault.create(${JSON.stringify(paths.request)},${JSON.stringify(JSON.stringify({ apiVersion: 1, command: 'export', requestId: id('asset-collision'), path: paths.drawing, out: paths.raster, overwrite: true, imagePolicy: { default: 'placeholder' } }))});return JSON.stringify({ready:true})})()`);
-    assert.equal(JSON.parse(cli('obsidian-excalidraw-plugin:export', `input=${paths.request}`)).error.code, 'INVALID_INPUT');
+    assert.equal(JSON.parse(cli('kuszcanvas:export', `input=${paths.request}`)).error.code, 'INVALID_INPUT');
     // Pause after disk assets have loaded, then perform a real same-size attachment replacement.
     const raced = `${prefix}_race.svg`; outputs.push(raced);
-    evaluate(`(()=>{if(globalThis.${control})throw Error('controller exists');const v=app.vault,c={vault:v,read:v.read,count:0};globalThis.${control}=c;c.gate=new Promise(r=>c.release=r);v.read=async function(f){if(f.path===${JSON.stringify(paths.drawing)}&&++c.count===3){c.waiting=true;await c.gate}return c.read.call(this,f)};app.plugins.plugins['obsidian-excalidraw-plugin'].executeCLI(${JSON.stringify({ apiVersion: 1, command: 'export', requestId: id('race'), path: paths.drawing, source: 'disk', out: raced })}).then(r=>c.result=r);return JSON.stringify({started:true})})()`);
+    evaluate(`(()=>{if(globalThis.${control})throw Error('controller exists');const v=app.vault,c={vault:v,read:v.read,count:0};globalThis.${control}=c;c.gate=new Promise(r=>c.release=r);v.read=async function(f){if(f.path===${JSON.stringify(paths.drawing)}&&++c.count===3){c.waiting=true;await c.gate}return c.read.call(this,f)};app.plugins.plugins['kuszcanvas'].executeCLI(${JSON.stringify({ apiVersion: 1, command: 'export', requestId: id('race'), path: paths.drawing, source: 'disk', out: raced })}).then(r=>c.result=r);return JSON.stringify({started:true})})()`);
     let waiting = false;
     for (let i = 0; i < 100; i++) {
       waiting = evaluate(`JSON.stringify({waiting:!!globalThis.${control}?.waiting,result:globalThis.${control}?.result})`).waiting;
