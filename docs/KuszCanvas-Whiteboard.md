@@ -2,7 +2,7 @@
 
 This build of the plugin uses the KuszCanvas fork of Excalidraw
 ([MattKusz/KuszCanvas](https://github.com/MattKusz/KuszCanvas), branch
-`kusch/whiteboard`), vendored in `vendor/excalidraw/`. `vendor/excalidraw/SOURCE.json`
+`master`), vendored in `vendor/excalidraw/`. `vendor/excalidraw/SOURCE.json`
 records the engine commit. The features below live in that engine; the plugin
 supplies two settings and the main-menu switches for them.
 
