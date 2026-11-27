@@ -28,3 +28,13 @@ export declare const getMarkdownShortcutStyle: (event: MarkdownShortcutKey) => M
  * The result selects the styled text without its markers.
  */
 export declare const toggleMarkdownStyle: (value: string, selectionStart: number, selectionEnd: number, style: MarkdownShortcutStyle) => MarkdownStyleEdit;
+/**
+ * Enter at a caret inside a list item's content: the new line starts the
+ * next item (same indent and quote markers, the next number, an open
+ * checkbox for a task). Enter in an empty item ends the list instead,
+ * leaving only its quote markers.
+ *
+ * Returns `null` when Enter should insert a plain newline: a selection, a
+ * line that isn't a list item, or a caret inside the item's marker.
+ */
+export declare const continueMarkdownList: (value: string, selectionStart: number, selectionEnd: number) => MarkdownStyleEdit | null;

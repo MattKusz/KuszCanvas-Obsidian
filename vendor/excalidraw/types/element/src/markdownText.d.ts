@@ -31,11 +31,15 @@ export type MarkdownRun = Readonly<{
     hidden: boolean;
     style: MarkdownInlineStyle;
 }>;
+/** A task list item's checkbox: `[ ]` open, `[x]` done; `null` = no checkbox. */
+export type MarkdownTask = "open" | "done" | null;
 export type MarkdownListMarker = Readonly<{
     kind: "bullet";
+    task: MarkdownTask;
 } | {
     kind: "ordered";
     label: string;
+    task: MarkdownTask;
 }>;
 export type MarkdownTableAlign = "left" | "center" | "right";
 export type MarkdownTableCell = Readonly<{

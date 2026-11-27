@@ -6,6 +6,13 @@ export declare const LIVE_TEXT_PREVIEW_CLASS = "excalidraw-wysiwyg--live-text-pr
  * event.
  */
 export declare const applyMarkdownShortcut: (event: KeyboardEvent, editable: HTMLTextAreaElement) => boolean;
+/**
+ * Handles plain Enter in a list item: starts the next item, or ends the list
+ * on an empty one. Returns `true` when it consumed the event.
+ *
+ * `isSuggesterOpen` reports whether the host's link suggester owns Enter.
+ */
+export declare const applyMarkdownListContinuation: (event: KeyboardEvent, editable: HTMLTextAreaElement, isSuggesterOpen: () => boolean) => boolean;
 export type LiveTextPreview = Readonly<{
     /** schedules a repaint (after an edit, a selection change or a restyle) */
     update: () => void;

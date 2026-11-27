@@ -10,6 +10,11 @@ export declare const MARKDOWN_MARK_ALPHA: Readonly<{
     tableGrid: 0.4;
     tableHeader: 0.06;
 }>;
+/** Checkbox corner radius and tick, as fractions of the box size. */
+export declare const MARKDOWN_CHECKBOX: Readonly<{
+    radius: 0.2;
+    tick: readonly [readonly [0.22, 0.52], readonly [0.42, 0.72], readonly [0.78, 0.3]];
+}>;
 /** Decoration offsets from the baseline, in em. */
 export declare const MARKDOWN_DECORATION: Readonly<{
     underlineOffset: 0.12;
@@ -50,6 +55,19 @@ export type MarkdownPaintOp = Readonly<{
     cx: number;
     cy: number;
     r: number;
+    color: string;
+} | {
+    /** a task's box, stroked; a done task's also gets a tick */
+    kind: "checkbox";
+    /** the visual line it sits on (for hit-testing clicks) */
+    line: number;
+    /** top-left corner */
+    x: number;
+    y: number;
+    size: number;
+    checked: boolean;
+    lineWidth: number;
+    radius: number;
     color: string;
 } | {
     kind: "text";

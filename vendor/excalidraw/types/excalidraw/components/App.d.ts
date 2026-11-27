@@ -20,6 +20,7 @@ import { AppClipboard } from "./App.clipboard";
 import { AppText } from "./App.text";
 import { AppTextTool } from "./App.textTool";
 import { AppBucketFill } from "./App.bucketFill";
+import { AppMarkdownTasks } from "./App.markdownTasks";
 import { AppToolDrag } from "./App.toolDrag";
 import { AppCursor } from "./App.cursor";
 import { AppDrawShape } from "./App.drawshape";
@@ -145,6 +146,7 @@ declare class App extends React.Component<AppProps, AppState> {
     private appStateObserver;
     onStateChange: OnStateChange;
     bucketFill: AppBucketFill;
+    markdownTasks: AppMarkdownTasks;
     duplicate: AppDuplicate;
     toolDrag: AppToolDrag;
     flowchart: AppFlowchart;

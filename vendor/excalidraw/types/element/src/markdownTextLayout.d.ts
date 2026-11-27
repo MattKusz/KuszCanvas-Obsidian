@@ -14,6 +14,9 @@ export declare const MARKDOWN_TEXT_METRICS: Readonly<{
     bulletOffset: 0.55;
     bulletRadius: 0.13;
     orderedGap: 0.35;
+    checkboxSize: 0.8;
+    /** between a checkbox and the content (a bullet task's matches the dot's) */
+    checkboxGap: 0.45;
     codePadding: 0.2;
     tableCellPadding: 0.5;
 }>;
@@ -38,6 +41,12 @@ export type MarkdownBullet = Readonly<{
     x: number;
     width: number;
 }>;
+/** A task item's checkbox: a `size` square whose left edge is `x`. */
+export type MarkdownCheckbox = Readonly<{
+    x: number;
+    size: number;
+    checked: boolean;
+}>;
 export type MarkdownTableLine = Readonly<{
     columnXs: readonly number[];
     columnWidths: readonly number[];
@@ -55,6 +64,7 @@ export type MarkdownVisualLine = Readonly<{
     width: number;
     segments: readonly MarkdownSegment[];
     bullet: MarkdownBullet | null;
+    checkbox: MarkdownCheckbox | null;
     /** left x of each quote bar */
     quoteBars: readonly number[];
     table: MarkdownTableLine | null;
